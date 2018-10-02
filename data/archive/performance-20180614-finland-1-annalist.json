@@ -1,0 +1,804 @@
+{
+	"@context": [
+		{
+			"@base": "/annalist/c/annalist_performance_archive/d/"
+		},
+		"/annalist/c/annalist_performance_archive/d/coll_context.jsonld"
+	],
+	"@id": "/annalist/c/annalist_performance_archive/l/Default_list_all/",
+	"annal:entity_list": [
+		{
+			"@id": "/annalist/c/annalist_performance_archive/d/Performance/Trigger_20180614-finland-1_1/",
+			"@type": [
+				"crm:E5_Event",
+				"prov:Activity",
+				"annal:EntityData"
+			],
+			"annal:id": "Trigger_20180614-finland-1_1",
+			"annal:type": "crm:E5_Event",
+			"annal:type_id": "Event",
+			"annal:url": "/annalist/c/annalist_performance_archive/d/Performance/Trigger_20180614-finland-1_1/",
+			"coll:musicode_id": "BC_SP",
+			"coll:musicode_type": "approach",
+			"prov:startedAtTime": "2018-06-14T16:48:44.316Z",
+			"rdfs:comment": "Performed code on approach to a challenge (\"BC_SP\")",
+			"rdfs:label": "BC_SP"
+		},
+		{
+			"@id": "/annalist/c/annalist_performance_archive/d/Performance/Trigger_20180614-finland-1_2/",
+			"@type": [
+				"crm:E5_Event",
+				"prov:Activity",
+				"annal:EntityData"
+			],
+			"annal:id": "Trigger_20180614-finland-1_2",
+			"annal:type": "crm:E5_Event",
+			"annal:type_id": "Event",
+			"annal:url": "/annalist/c/annalist_performance_archive/d/Performance/Trigger_20180614-finland-1_2/",
+			"coll:musicode_id": "BC_Ending1",
+			"coll:musicode_type": "choice",
+			"prov:startedAtTime": "2018-06-14T16:49:05.671Z",
+			"rdfs:comment": "Performed choice code (\"BC_Ending1\")",
+			"rdfs:label": "BC_Ending1"
+		},
+		{
+			"@id": "/annalist/c/annalist_performance_archive/d/Performance/Perform_Climb_20180614-finland-1_basecamp/",
+			"@type": [
+				"frbroo:F31_Performance",
+				"prov:Activity",
+				"crm:E5_Event",
+				"crm:E7_Activity",
+				"mo:Performance",
+				"annal:EntityData"
+			],
+			"annal:id": "Perform_Climb_20180614-finland-1_basecamp",
+			"annal:type": "frbroo:F31_Performance",
+			"annal:type_id": "Performance",
+			"annal:url": "/annalist/c/annalist_performance_archive/d/Performance/Perform_Climb_20180614-finland-1_basecamp/",
+			"coll:system_id": "",
+			"coll:uploaded_image_r": [],
+			"coll:meld_session:": "http://127.0.0.1:5000/sessions/PYySQNwgkg2NvYKcNhGkmR",
+			"crm:P7_took_place_at": "",
+			"entity:seeAlso_r": [],
+			"frbroo:R25F_performed_r": [
+				{
+					"frbroo:R25F_performed": "Part_of_Work/Climb_basecamp"
+				}
+			],
+			"prov:qualifiedAssociation": [],
+			"prov:startedAtTime": "2018-06-14T16:48:13.850Z",
+			"prov:used_r": [],
+			"rdfs:comment": "Performance of Climb Basecamp in Climb! in Finland (1)",
+			"rdfs:label": "Basecamp",
+			"event:sub_event": [
+				{
+					"event:sub_event": "Event/Trigger_20180614-finland-1_1"
+				},
+				{
+					"event:sub_event": "Event/Trigger_20180614-finland-1_2"
+				}
+			]
+		},
+		{
+			"@id": "/annalist/c/annalist_performance_archive/d/Performance/Trigger_20180614-finland-1_3/",
+			"@type": [
+				"crm:E5_Event",
+				"prov:Activity",
+				"annal:EntityData"
+			],
+			"annal:id": "Trigger_20180614-finland-1_3",
+			"annal:type": "crm:E5_Event",
+			"annal:type_id": "Event",
+			"annal:url": "/annalist/c/annalist_performance_archive/d/Performance/Trigger_20180614-finland-1_3/",
+			"coll:musicode_id": "1a_1",
+			"coll:musicode_type": "trigger",
+			"prov:startedAtTime": "2018-06-14T16:49:23.408Z",
+			"rdfs:comment": "Performed code to start disklavier (\"1a_1\")",
+			"rdfs:label": "1a_1"
+		},
+		{
+			"@id": "/annalist/c/annalist_performance_archive/d/Performance/Trigger_20180614-finland-1_4/",
+			"@type": [
+				"crm:E5_Event",
+				"prov:Activity",
+				"annal:EntityData"
+			],
+			"annal:id": "Trigger_20180614-finland-1_4",
+			"annal:type": "crm:E5_Event",
+			"annal:type_id": "Event",
+			"annal:url": "/annalist/c/annalist_performance_archive/d/Performance/Trigger_20180614-finland-1_4/",
+			"coll:musicode_id": "1a_2",
+			"coll:musicode_type": "challenge",
+			"prov:startedAtTime": "2018-06-14T16:49:38.957Z",
+			"rdfs:comment": "Performed challenge code successfully (\"1a_2\")",
+			"rdfs:label": "1a_2"
+		},
+		{
+			"@id": "/annalist/c/annalist_performance_archive/d/Performance/Perform_Climb_20180614-finland-1_1a/",
+			"@type": [
+				"frbroo:F31_Performance",
+				"prov:Activity",
+				"crm:E5_Event",
+				"crm:E7_Activity",
+				"mo:Performance",
+				"annal:EntityData"
+			],
+			"annal:id": "Perform_Climb_20180614-finland-1_1a",
+			"annal:type": "frbroo:F31_Performance",
+			"annal:type_id": "Performance",
+			"annal:url": "/annalist/c/annalist_performance_archive/d/Performance/Perform_Climb_20180614-finland-1_1a/",
+			"coll:system_id": "",
+			"coll:uploaded_image_r": [],
+			"coll:meld_session:": "http://127.0.0.1:5000/sessions/uutVhErm4kicbLqyqcqPPZ",
+			"crm:P7_took_place_at": "",
+			"entity:seeAlso_r": [],
+			"frbroo:R25F_performed_r": [
+				{
+					"frbroo:R25F_performed": "Part_of_Work/Climb_1a"
+				}
+			],
+			"prov:qualifiedAssociation": [],
+			"prov:startedAtTime": "2018-06-14T16:49:13.122Z",
+			"prov:used_r": [],
+			"rdfs:comment": "Performance of Climb The Angry Deer in Climb! in Finland (1)",
+			"rdfs:label": "The Angry Deer",
+			"event:sub_event": [
+				{
+					"event:sub_event": "Event/Trigger_20180614-finland-1_3"
+				},
+				{
+					"event:sub_event": "Event/Trigger_20180614-finland-1_4"
+				}
+			]
+		},
+		{
+			"@id": "/annalist/c/annalist_performance_archive/d/Performance/Trigger_20180614-finland-1_5/",
+			"@type": [
+				"crm:E5_Event",
+				"prov:Activity",
+				"annal:EntityData"
+			],
+			"annal:id": "Trigger_20180614-finland-1_5",
+			"annal:type": "crm:E5_Event",
+			"annal:type_id": "Event",
+			"annal:url": "/annalist/c/annalist_performance_archive/d/Performance/Trigger_20180614-finland-1_5/",
+			"coll:musicode_id": "p1a",
+			"coll:musicode_type": "trigger",
+			"prov:startedAtTime": "2018-06-14T16:50:19.157Z",
+			"rdfs:comment": "Performed code to start disklavier (\"p1a\")",
+			"rdfs:label": "p1a"
+		},
+		{
+			"@id": "/annalist/c/annalist_performance_archive/d/Performance/Perform_Climb_20180614-finland-1_p1a/",
+			"@type": [
+				"frbroo:F31_Performance",
+				"prov:Activity",
+				"crm:E5_Event",
+				"crm:E7_Activity",
+				"mo:Performance",
+				"annal:EntityData"
+			],
+			"annal:id": "Perform_Climb_20180614-finland-1_p1a",
+			"annal:type": "frbroo:F31_Performance",
+			"annal:type_id": "Performance",
+			"annal:url": "/annalist/c/annalist_performance_archive/d/Performance/Perform_Climb_20180614-finland-1_p1a/",
+			"coll:system_id": "",
+			"coll:uploaded_image_r": [],
+			"coll:meld_session:": "http://127.0.0.1:5000/sessions/XxWE3U5qBtvMvivJp2E2hh",
+			"crm:P7_took_place_at": "",
+			"entity:seeAlso_r": [],
+			"frbroo:R25F_performed_r": [
+				{
+					"frbroo:R25F_performed": "Part_of_Work/Climb_p1a"
+				}
+			],
+			"prov:qualifiedAssociation": [],
+			"prov:startedAtTime": "2018-06-14T16:49:44.448Z",
+			"prov:used_r": [],
+			"rdfs:comment": "Performance of Climb Path 1 in Climb! in Finland (1)",
+			"rdfs:label": "Path 1",
+			"event:sub_event": [
+				{
+					"event:sub_event": "Event/Trigger_20180614-finland-1_5"
+				}
+			]
+		},
+		{
+			"@id": "/annalist/c/annalist_performance_archive/d/Performance/Perform_Climb_20180614-finland-1_2a/",
+			"@type": [
+				"frbroo:F31_Performance",
+				"prov:Activity",
+				"crm:E5_Event",
+				"crm:E7_Activity",
+				"mo:Performance",
+				"annal:EntityData"
+			],
+			"annal:id": "Perform_Climb_20180614-finland-1_2a",
+			"annal:type": "frbroo:F31_Performance",
+			"annal:type_id": "Performance",
+			"annal:url": "/annalist/c/annalist_performance_archive/d/Performance/Perform_Climb_20180614-finland-1_2a/",
+			"coll:system_id": "",
+			"coll:uploaded_image_r": [],
+			"coll:meld_session:": "http://127.0.0.1:5000/sessions/i7xCejmWRp8h7aQ2inMFZg",
+			"crm:P7_took_place_at": "",
+			"entity:seeAlso_r": [],
+			"frbroo:R25F_performed_r": [
+				{
+					"frbroo:R25F_performed": "Part_of_Work/Climb_2a"
+				}
+			],
+			"prov:qualifiedAssociation": [],
+			"prov:startedAtTime": "2018-06-14T16:51:19.785Z",
+			"prov:used_r": [],
+			"rdfs:comment": "Performance of Climb A Flooded Path in Climb! in Finland (1)",
+			"rdfs:label": "A Flooded Path",
+			"event:sub_event": []
+		},
+		{
+			"@id": "/annalist/c/annalist_performance_archive/d/Performance/Trigger_20180614-finland-1_6/",
+			"@type": [
+				"crm:E5_Event",
+				"prov:Activity",
+				"annal:EntityData"
+			],
+			"annal:id": "Trigger_20180614-finland-1_6",
+			"annal:type": "crm:E5_Event",
+			"annal:type_id": "Event",
+			"annal:url": "/annalist/c/annalist_performance_archive/d/Performance/Trigger_20180614-finland-1_6/",
+			"coll:musicode_id": "2c_1",
+			"coll:musicode_type": "trigger",
+			"prov:startedAtTime": "2018-06-14T16:52:53.279Z",
+			"rdfs:comment": "Performed code to start disklavier (\"2c_1\")",
+			"rdfs:label": "2c_1"
+		},
+		{
+			"@id": "/annalist/c/annalist_performance_archive/d/Performance/Perform_Climb_20180614-finland-1_2c/",
+			"@type": [
+				"frbroo:F31_Performance",
+				"prov:Activity",
+				"crm:E5_Event",
+				"crm:E7_Activity",
+				"mo:Performance",
+				"annal:EntityData"
+			],
+			"annal:id": "Perform_Climb_20180614-finland-1_2c",
+			"annal:type": "frbroo:F31_Performance",
+			"annal:type_id": "Performance",
+			"annal:url": "/annalist/c/annalist_performance_archive/d/Performance/Perform_Climb_20180614-finland-1_2c/",
+			"coll:system_id": "",
+			"coll:uploaded_image_r": [],
+			"coll:meld_session:": "http://127.0.0.1:5000/sessions/Hnh6eR27wAwBcnhx8AEvqX",
+			"crm:P7_took_place_at": "",
+			"entity:seeAlso_r": [],
+			"frbroo:R25F_performed_r": [
+				{
+					"frbroo:R25F_performed": "Part_of_Work/Climb_2c"
+				}
+			],
+			"prov:qualifiedAssociation": [],
+			"prov:startedAtTime": "2018-06-14T16:52:43.001Z",
+			"prov:used_r": [],
+			"rdfs:comment": "Performance of Climb The Herd of Cows in Climb! in Finland (1)",
+			"rdfs:label": "The Herd of Cows",
+			"event:sub_event": [
+				{
+					"event:sub_event": "Event/Trigger_20180614-finland-1_6"
+				}
+			]
+		},
+		{
+			"@id": "/annalist/c/annalist_performance_archive/d/Performance/Trigger_20180614-finland-1_7/",
+			"@type": [
+				"crm:E5_Event",
+				"prov:Activity",
+				"annal:EntityData"
+			],
+			"annal:id": "Trigger_20180614-finland-1_7",
+			"annal:type": "crm:E5_Event",
+			"annal:type_id": "Event",
+			"annal:url": "/annalist/c/annalist_performance_archive/d/Performance/Trigger_20180614-finland-1_7/",
+			"coll:musicode_id": "2b_1",
+			"coll:musicode_type": "trigger",
+			"prov:startedAtTime": "2018-06-14T16:54:58.925Z",
+			"rdfs:comment": "Performed code to start disklavier (\"2b_1\")",
+			"rdfs:label": "2b_1"
+		},
+		{
+			"@id": "/annalist/c/annalist_performance_archive/d/Performance/Trigger_20180614-finland-1_8/",
+			"@type": [
+				"crm:E5_Event",
+				"prov:Activity",
+				"annal:EntityData"
+			],
+			"annal:id": "Trigger_20180614-finland-1_8",
+			"annal:type": "crm:E5_Event",
+			"annal:type_id": "Event",
+			"annal:url": "/annalist/c/annalist_performance_archive/d/Performance/Trigger_20180614-finland-1_8/",
+			"coll:musicode_id": "2b_2",
+			"coll:musicode_type": "challenge",
+			"prov:startedAtTime": "2018-06-14T16:56:04.645Z",
+			"rdfs:comment": "Performed challenge code successfully (\"2b_2\")",
+			"rdfs:label": "2b_2"
+		},
+		{
+			"@id": "/annalist/c/annalist_performance_archive/d/Performance/Perform_Climb_20180614-finland-1_2b/",
+			"@type": [
+				"frbroo:F31_Performance",
+				"prov:Activity",
+				"crm:E5_Event",
+				"crm:E7_Activity",
+				"mo:Performance",
+				"annal:EntityData"
+			],
+			"annal:id": "Perform_Climb_20180614-finland-1_2b",
+			"annal:type": "frbroo:F31_Performance",
+			"annal:type_id": "Performance",
+			"annal:url": "/annalist/c/annalist_performance_archive/d/Performance/Perform_Climb_20180614-finland-1_2b/",
+			"coll:system_id": "",
+			"coll:uploaded_image_r": [],
+			"coll:meld_session:": "http://127.0.0.1:5000/sessions/58sraSdMNvoPMXDJxFeAcB",
+			"crm:P7_took_place_at": "",
+			"entity:seeAlso_r": [],
+			"frbroo:R25F_performed_r": [
+				{
+					"frbroo:R25F_performed": "Part_of_Work/Climb_2b"
+				}
+			],
+			"prov:qualifiedAssociation": [],
+			"prov:startedAtTime": "2018-06-14T16:54:34.337Z",
+			"prov:used_r": [],
+			"rdfs:comment": "Performance of Climb A Tree Trunk on the Path in Climb! in Finland (1)",
+			"rdfs:label": "A Tree Trunk on the Path",
+			"event:sub_event": [
+				{
+					"event:sub_event": "Event/Trigger_20180614-finland-1_7"
+				},
+				{
+					"event:sub_event": "Event/Trigger_20180614-finland-1_8"
+				}
+			]
+		},
+		{
+			"@id": "/annalist/c/annalist_performance_archive/d/Performance/Perform_Climb_20180614-finland-1_p2b/",
+			"@type": [
+				"frbroo:F31_Performance",
+				"prov:Activity",
+				"crm:E5_Event",
+				"crm:E7_Activity",
+				"mo:Performance",
+				"annal:EntityData"
+			],
+			"annal:id": "Perform_Climb_20180614-finland-1_p2b",
+			"annal:type": "frbroo:F31_Performance",
+			"annal:type_id": "Performance",
+			"annal:url": "/annalist/c/annalist_performance_archive/d/Performance/Perform_Climb_20180614-finland-1_p2b/",
+			"coll:system_id": "",
+			"coll:uploaded_image_r": [],
+			"coll:meld_session:": "http://127.0.0.1:5000/sessions/YjYttCNYRB5vnuf9NTfauP",
+			"crm:P7_took_place_at": "",
+			"entity:seeAlso_r": [],
+			"frbroo:R25F_performed_r": [
+				{
+					"frbroo:R25F_performed": "Part_of_Work/Climb_p2b"
+				}
+			],
+			"prov:qualifiedAssociation": [],
+			"prov:startedAtTime": "2018-06-14T16:57:00.996Z",
+			"prov:used_r": [],
+			"rdfs:comment": "Performance of Climb Path 2 in Climb! in Finland (1)",
+			"rdfs:label": "Path 2",
+			"event:sub_event": []
+		},
+		{
+			"@id": "/annalist/c/annalist_performance_archive/d/Performance/Perform_Climb_20180614-finland-1_3b/",
+			"@type": [
+				"frbroo:F31_Performance",
+				"prov:Activity",
+				"crm:E5_Event",
+				"crm:E7_Activity",
+				"mo:Performance",
+				"annal:EntityData"
+			],
+			"annal:id": "Perform_Climb_20180614-finland-1_3b",
+			"annal:type": "frbroo:F31_Performance",
+			"annal:type_id": "Performance",
+			"annal:url": "/annalist/c/annalist_performance_archive/d/Performance/Perform_Climb_20180614-finland-1_3b/",
+			"coll:system_id": "",
+			"coll:uploaded_image_r": [],
+			"coll:meld_session:": "http://127.0.0.1:5000/sessions/Tcqi3bwuuwBxnivd22BhGk",
+			"crm:P7_took_place_at": "",
+			"entity:seeAlso_r": [],
+			"frbroo:R25F_performed_r": [
+				{
+					"frbroo:R25F_performed": "Part_of_Work/Climb_3b"
+				}
+			],
+			"prov:qualifiedAssociation": [],
+			"prov:startedAtTime": "2018-06-14T16:58:21.045Z",
+			"prov:used_r": [],
+			"rdfs:comment": "Performance of Climb A Scary Whispering Forest in Climb! in Finland (1)",
+			"rdfs:label": "A Scary Whispering Forest",
+			"event:sub_event": []
+		},
+		{
+			"@id": "/annalist/c/annalist_performance_archive/d/Performance/Perform_Climb_20180614-finland-1_3a/",
+			"@type": [
+				"frbroo:F31_Performance",
+				"prov:Activity",
+				"crm:E5_Event",
+				"crm:E7_Activity",
+				"mo:Performance",
+				"annal:EntityData"
+			],
+			"annal:id": "Perform_Climb_20180614-finland-1_3a",
+			"annal:type": "frbroo:F31_Performance",
+			"annal:type_id": "Performance",
+			"annal:url": "/annalist/c/annalist_performance_archive/d/Performance/Perform_Climb_20180614-finland-1_3a/",
+			"coll:system_id": "",
+			"coll:uploaded_image_r": [],
+			"coll:meld_session:": "http://127.0.0.1:5000/sessions/a5m5P7rkkV4CaRc9FyTui2",
+			"crm:P7_took_place_at": "",
+			"entity:seeAlso_r": [],
+			"frbroo:R25F_performed_r": [
+				{
+					"frbroo:R25F_performed": "Part_of_Work/Climb_3a"
+				}
+			],
+			"prov:qualifiedAssociation": [],
+			"prov:startedAtTime": "2018-06-14T16:59:58.543Z",
+			"prov:used_r": [],
+			"rdfs:comment": "Performance of Climb Avatar Finds a Shimmering Stone in Climb! in Finland (1)",
+			"rdfs:label": "Avatar Finds a Shimmering Stone",
+			"event:sub_event": []
+		},
+		{
+			"@id": "/annalist/c/annalist_performance_archive/d/Performance/Perform_Climb_20180614-finland-1_p1c/",
+			"@type": [
+				"frbroo:F31_Performance",
+				"prov:Activity",
+				"crm:E5_Event",
+				"crm:E7_Activity",
+				"mo:Performance",
+				"annal:EntityData"
+			],
+			"annal:id": "Perform_Climb_20180614-finland-1_p1c",
+			"annal:type": "frbroo:F31_Performance",
+			"annal:type_id": "Performance",
+			"annal:url": "/annalist/c/annalist_performance_archive/d/Performance/Perform_Climb_20180614-finland-1_p1c/",
+			"coll:system_id": "",
+			"coll:uploaded_image_r": [],
+			"coll:meld_session:": "http://127.0.0.1:5000/sessions/3Z4VXBNqMTAGDAR98oiCDe",
+			"crm:P7_took_place_at": "",
+			"entity:seeAlso_r": [],
+			"frbroo:R25F_performed_r": [
+				{
+					"frbroo:R25F_performed": "Part_of_Work/Climb_p1c"
+				}
+			],
+			"prov:qualifiedAssociation": [],
+			"prov:startedAtTime": "2018-06-14T17:01:48.192Z",
+			"prov:used_r": [],
+			"rdfs:comment": "Performance of Climb Path 1 in Climb! in Finland (1)",
+			"rdfs:label": "Path 1",
+			"event:sub_event": []
+		},
+		{
+			"@id": "/annalist/c/annalist_performance_archive/d/Performance/Trigger_20180614-finland-1_9/",
+			"@type": [
+				"crm:E5_Event",
+				"prov:Activity",
+				"annal:EntityData"
+			],
+			"annal:id": "Trigger_20180614-finland-1_9",
+			"annal:type": "crm:E5_Event",
+			"annal:type_id": "Event",
+			"annal:url": "/annalist/c/annalist_performance_archive/d/Performance/Trigger_20180614-finland-1_9/",
+			"coll:musicode_id": "4a_1",
+			"coll:musicode_type": "trigger",
+			"prov:startedAtTime": "2018-06-14T17:02:35.455Z",
+			"rdfs:comment": "Performed code to start disklavier (\"4a_1\")",
+			"rdfs:label": "4a_1"
+		},
+		{
+			"@id": "/annalist/c/annalist_performance_archive/d/Performance/Trigger_20180614-finland-1_10/",
+			"@type": [
+				"crm:E5_Event",
+				"prov:Activity",
+				"annal:EntityData"
+			],
+			"annal:id": "Trigger_20180614-finland-1_10",
+			"annal:type": "crm:E5_Event",
+			"annal:type_id": "Event",
+			"annal:url": "/annalist/c/annalist_performance_archive/d/Performance/Trigger_20180614-finland-1_10/",
+			"coll:musicode_id": "4a_2",
+			"coll:musicode_type": "challenge",
+			"prov:startedAtTime": "2018-06-14T17:03:38.588Z",
+			"rdfs:comment": "Performed challenge code successfully (\"4a_2\")",
+			"rdfs:label": "4a_2"
+		},
+		{
+			"@id": "/annalist/c/annalist_performance_archive/d/Performance/Perform_Climb_20180614-finland-1_4a/",
+			"@type": [
+				"frbroo:F31_Performance",
+				"prov:Activity",
+				"crm:E5_Event",
+				"crm:E7_Activity",
+				"mo:Performance",
+				"annal:EntityData"
+			],
+			"annal:id": "Perform_Climb_20180614-finland-1_4a",
+			"annal:type": "frbroo:F31_Performance",
+			"annal:type_id": "Performance",
+			"annal:url": "/annalist/c/annalist_performance_archive/d/Performance/Perform_Climb_20180614-finland-1_4a/",
+			"coll:system_id": "",
+			"coll:uploaded_image_r": [],
+			"coll:meld_session:": "http://127.0.0.1:5000/sessions/kApRoXr4roTVPSCFfcEHoe",
+			"crm:P7_took_place_at": "",
+			"entity:seeAlso_r": [],
+			"frbroo:R25F_performed_r": [
+				{
+					"frbroo:R25F_performed": "Part_of_Work/Climb_4a"
+				}
+			],
+			"prov:qualifiedAssociation": [],
+			"prov:startedAtTime": "2018-06-14T17:02:30.594Z",
+			"prov:used_r": [],
+			"rdfs:comment": "Performance of Climb A Sleeping Bear in Climb! in Finland (1)",
+			"rdfs:label": "A Sleeping Bear",
+			"event:sub_event": [
+				{
+					"event:sub_event": "Event/Trigger_20180614-finland-1_9"
+				},
+				{
+					"event:sub_event": "Event/Trigger_20180614-finland-1_10"
+				}
+			]
+		},
+		{
+			"@id": "/annalist/c/annalist_performance_archive/d/Performance/Perform_Climb_20180614-finland-1_5a/",
+			"@type": [
+				"frbroo:F31_Performance",
+				"prov:Activity",
+				"crm:E5_Event",
+				"crm:E7_Activity",
+				"mo:Performance",
+				"annal:EntityData"
+			],
+			"annal:id": "Perform_Climb_20180614-finland-1_5a",
+			"annal:type": "frbroo:F31_Performance",
+			"annal:type_id": "Performance",
+			"annal:url": "/annalist/c/annalist_performance_archive/d/Performance/Perform_Climb_20180614-finland-1_5a/",
+			"coll:system_id": "",
+			"coll:uploaded_image_r": [],
+			"coll:meld_session:": "http://127.0.0.1:5000/sessions/yeoCchJH3S96EbWLcZMWjB",
+			"crm:P7_took_place_at": "",
+			"entity:seeAlso_r": [],
+			"frbroo:R25F_performed_r": [
+				{
+					"frbroo:R25F_performed": "Part_of_Work/Climb_5a"
+				}
+			],
+			"prov:qualifiedAssociation": [],
+			"prov:startedAtTime": "2018-06-14T17:04:19.184Z",
+			"prov:used_r": [],
+			"rdfs:comment": "Performance of Climb Rolling Stones in Climb! in Finland (1)",
+			"rdfs:label": "Rolling Stones",
+			"event:sub_event": []
+		},
+		{
+			"@id": "/annalist/c/annalist_performance_archive/d/Performance/Trigger_20180614-finland-1_11/",
+			"@type": [
+				"crm:E5_Event",
+				"prov:Activity",
+				"annal:EntityData"
+			],
+			"annal:id": "Trigger_20180614-finland-1_11",
+			"annal:type": "crm:E5_Event",
+			"annal:type_id": "Event",
+			"annal:url": "/annalist/c/annalist_performance_archive/d/Performance/Trigger_20180614-finland-1_11/",
+			"coll:musicode_id": "5b_1",
+			"coll:musicode_type": "trigger",
+			"prov:startedAtTime": "2018-06-14T17:06:21.778Z",
+			"rdfs:comment": "Performed code to start disklavier (\"5b_1\")",
+			"rdfs:label": "5b_1"
+		},
+		{
+			"@id": "/annalist/c/annalist_performance_archive/d/Performance/Perform_Climb_20180614-finland-1_5b/",
+			"@type": [
+				"frbroo:F31_Performance",
+				"prov:Activity",
+				"crm:E5_Event",
+				"crm:E7_Activity",
+				"mo:Performance",
+				"annal:EntityData"
+			],
+			"annal:id": "Perform_Climb_20180614-finland-1_5b",
+			"annal:type": "frbroo:F31_Performance",
+			"annal:type_id": "Performance",
+			"annal:url": "/annalist/c/annalist_performance_archive/d/Performance/Perform_Climb_20180614-finland-1_5b/",
+			"coll:system_id": "",
+			"coll:uploaded_image_r": [],
+			"coll:meld_session:": "http://127.0.0.1:5000/sessions/uyrkZZZoZM3zizjQDSGNfU",
+			"crm:P7_took_place_at": "",
+			"entity:seeAlso_r": [],
+			"frbroo:R25F_performed_r": [
+				{
+					"frbroo:R25F_performed": "Part_of_Work/Climb_5b"
+				}
+			],
+			"prov:qualifiedAssociation": [],
+			"prov:startedAtTime": "2018-06-14T17:06:13.387Z",
+			"prov:used_r": [],
+			"rdfs:comment": "Performance of Climb Birds Attack in Climb! in Finland (1)",
+			"rdfs:label": "Birds Attack",
+			"event:sub_event": [
+				{
+					"event:sub_event": "Event/Trigger_20180614-finland-1_11"
+				}
+			]
+		},
+		{
+			"@id": "/annalist/c/annalist_performance_archive/d/Performance/Perform_Climb_20180614-finland-1_5c/",
+			"@type": [
+				"frbroo:F31_Performance",
+				"prov:Activity",
+				"crm:E5_Event",
+				"crm:E7_Activity",
+				"mo:Performance",
+				"annal:EntityData"
+			],
+			"annal:id": "Perform_Climb_20180614-finland-1_5c",
+			"annal:type": "frbroo:F31_Performance",
+			"annal:type_id": "Performance",
+			"annal:url": "/annalist/c/annalist_performance_archive/d/Performance/Perform_Climb_20180614-finland-1_5c/",
+			"coll:system_id": "",
+			"coll:uploaded_image_r": [],
+			"coll:meld_session:": "http://127.0.0.1:5000/sessions/VPETYKj64m9cCcwF6Wpqq4",
+			"crm:P7_took_place_at": "",
+			"entity:seeAlso_r": [],
+			"frbroo:R25F_performed_r": [
+				{
+					"frbroo:R25F_performed": "Part_of_Work/Climb_5c"
+				}
+			],
+			"prov:qualifiedAssociation": [],
+			"prov:startedAtTime": "2018-06-14T17:07:36.059Z",
+			"prov:used_r": [],
+			"rdfs:comment": "Performance of Climb Falling Trees in Climb! in Finland (1)",
+			"rdfs:label": "Falling Trees",
+			"event:sub_event": []
+		},
+		{
+			"@id": "/annalist/c/annalist_performance_archive/d/Performance/Trigger_20180614-finland-1_12/",
+			"@type": [
+				"crm:E5_Event",
+				"prov:Activity",
+				"annal:EntityData"
+			],
+			"annal:id": "Trigger_20180614-finland-1_12",
+			"annal:type": "crm:E5_Event",
+			"annal:type_id": "Event",
+			"annal:url": "/annalist/c/annalist_performance_archive/d/Performance/Trigger_20180614-finland-1_12/",
+			"coll:musicode_id": "summit",
+			"coll:musicode_type": "trigger",
+			"prov:startedAtTime": "2018-06-14T17:09:32.249Z",
+			"rdfs:comment": "Performed code to start disklavier (\"summit\")",
+			"rdfs:label": "summit"
+		},
+		{
+			"@id": "/annalist/c/annalist_performance_archive/d/Performance/Perform_Climb_20180614-finland-1_summit/",
+			"@type": [
+				"frbroo:F31_Performance",
+				"prov:Activity",
+				"crm:E5_Event",
+				"crm:E7_Activity",
+				"mo:Performance",
+				"annal:EntityData"
+			],
+			"annal:id": "Perform_Climb_20180614-finland-1_summit",
+			"annal:type": "frbroo:F31_Performance",
+			"annal:type_id": "Performance",
+			"annal:url": "/annalist/c/annalist_performance_archive/d/Performance/Perform_Climb_20180614-finland-1_summit/",
+			"coll:system_id": "",
+			"coll:uploaded_image_r": [],
+			"coll:meld_session:": "http://127.0.0.1:5000/sessions/QbVxVQjE7bsfnaScDn3FLN",
+			"crm:P7_took_place_at": "",
+			"entity:seeAlso_r": [],
+			"frbroo:R25F_performed_r": [
+				{
+					"frbroo:R25F_performed": "Part_of_Work/Climb_summit"
+				}
+			],
+			"prov:qualifiedAssociation": [],
+			"prov:startedAtTime": "2018-06-14T17:09:18.924Z",
+			"prov:used_r": [],
+			"rdfs:comment": "Performance of Climb Summit in Climb! in Finland (1)",
+			"rdfs:label": "Summit",
+			"event:sub_event": [
+				{
+					"event:sub_event": "Event/Trigger_20180614-finland-1_12"
+				}
+			]
+		},
+		{
+			"@id": "/annalist/c/annalist_performance_archive/d/Performance/20180614-finland-1/",
+			"@type": [
+				"frbroo:F31_Performance",
+				"prov:Activity",
+				"crm:E5_Event",
+				"crm:E7_Activity",
+				"mo:Performance",
+				"annal:EntityData"
+			],
+			"annal:id": "20180614-finland-1",
+			"annal:type": "frbroo:F31_Performance",
+			"annal:type_id": "Performance",
+			"annal:url": "/annalist/c/annalist_performance_archive/d/Performance/20180614-finland-1/",
+			"coll:system_id": "20180614-finland-1",
+			"coll:uploaded_image_r": [],
+			"entity:seeAlso_r": [],
+			"event:sub_event": [
+				{
+					"event:sub_event": "Performance/Perform_Climb_20180614-finland-1_basecamp"
+				},
+				{
+					"event:sub_event": "Performance/Perform_Climb_20180614-finland-1_1a"
+				},
+				{
+					"event:sub_event": "Performance/Perform_Climb_20180614-finland-1_p1a"
+				},
+				{
+					"event:sub_event": "Performance/Perform_Climb_20180614-finland-1_2a"
+				},
+				{
+					"event:sub_event": "Performance/Perform_Climb_20180614-finland-1_2c"
+				},
+				{
+					"event:sub_event": "Performance/Perform_Climb_20180614-finland-1_2b"
+				},
+				{
+					"event:sub_event": "Performance/Perform_Climb_20180614-finland-1_p2b"
+				},
+				{
+					"event:sub_event": "Performance/Perform_Climb_20180614-finland-1_3b"
+				},
+				{
+					"event:sub_event": "Performance/Perform_Climb_20180614-finland-1_3a"
+				},
+				{
+					"event:sub_event": "Performance/Perform_Climb_20180614-finland-1_p1c"
+				},
+				{
+					"event:sub_event": "Performance/Perform_Climb_20180614-finland-1_4a"
+				},
+				{
+					"event:sub_event": "Performance/Perform_Climb_20180614-finland-1_5a"
+				},
+				{
+					"event:sub_event": "Performance/Perform_Climb_20180614-finland-1_5b"
+				},
+				{
+					"event:sub_event": "Performance/Perform_Climb_20180614-finland-1_5c"
+				},
+				{
+					"event:sub_event": "Performance/Perform_Climb_20180614-finland-1_summit"
+				}
+			],
+			"frbroo:R25F_performed_r": [
+				{
+					"frbroo:R25F_performed": "Performed_work/Climb"
+				}
+			],
+			"prov:qualifiedAssociation": [
+				{
+					"crm:P12i_was_present_at": "Person/20180614-finland-1-performer-1",
+					"prov:hadRole": ""
+				}
+			],
+			"prov:startedAtTime": "2018-06-14T16:48:13.850Z",
+			"prov:used_r": [],
+			"rdfs:comment": null,
+			"rdfs:label": "Climb! in Finland (1)"
+		}
+	]
+}
