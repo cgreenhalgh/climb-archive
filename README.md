@@ -31,7 +31,28 @@ Archive data files are:
 
 As per the mrl music server, the default URL for the archive will be `1/archive/`. This requires URL rewriting for HTML5 navigation.
 
-## Build 
+## Quick Build
+
+Get local copies of recordings.
+
+Build Nginx frontend:
+```
+cd nginx
+sudo docker build -t frontend .
+```
+
+## Run
+
+one time:
+```
+sudo docker network create --driver bridge internal
+
+sudo docker run --name frontend -d --restart=always --network=internal \
+  -p :80:80 -v `pwd`/volumes/html:/usr/share/nginx/html \
+  -v `pwd`/volumes/logs/nginx:/var/log/nginx/log frontend 
+```
+
+## Re-Build 
 
 Archive:
 
@@ -44,22 +65,23 @@ cd ../..
 (cd volumes/html/1/archive; tar zxf ../../../../music-archive/archive-app/archive.tgz)
 ```
 
-data
+Data (and use local file URLs):
 ```
 cp data/archive/* volumes/html/1/archive/assets/data/
 sed -i -e 'sX"http://music-mrl.nott.ac.uk/X"/X' volumes/html/1/archive/assets/data/musichub-performances.json
 sed -i -e 'sX"http://music-mrl.nott.ac.uk/X"/X' volumes/html/1/archive/assets/data/climb-recordings-20170608.json
-
 ```
 
-local recordings:
+## Recordings
+
+E.g. get from music hub server:
 ```
 cd volumes/html/1/recordings
 sftp XXX@XXX
 cd /srv/mrl/mrl-music/html/1/recordings/
 mget *
 ```
-currently 
+currently using:
 ```
 'Climb! Iittala Perf 1-480-149ec5c1b9c037e08f8713759cc5c1e3.mp4'
 'Climb! Iittala Perf 2-480-bdcb00dc8b34422dbf14bf4eea28fc67.mp4'
@@ -79,19 +101,3 @@ currently
  Rehearsal_mix2.mp3
 ```
 
-Nginx frontend:
-```
-cd nginx
-sudo docker build -t frontend .
-```
-
-## Run
-
-one time:
-```
-sudo docker network create --driver bridge internal
-
-sudo docker run --name frontend -d --restart=always --network=internal \
-  -p :80:80 -v `pwd`/volumes/html:/usr/share/nginx/html \
-  -v `pwd`/volumes/logs/nginx:/var/log/nginx/log frontend 
-```
