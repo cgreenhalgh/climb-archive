@@ -72,6 +72,21 @@ sed -i -e 'sX"http://music-mrl.nott.ac.uk/X"/X' volumes/html/1/archive/assets/da
 sed -i -e 'sX"http://music-mrl.nott.ac.uk/X"/X' volumes/html/1/archive/assets/data/climb-recordings-20170608.json
 ```
 
+## Dev
+
+```
+sudo docker run --name archive --rm -it -p :4200:4200 -p :9876:9876 archive-app /bin/sh
+`npm bin`/ng serve --host=0.0.0.0
+```
+(will need to fix recording urls)
+```
+cp data/archive/* volumes/html/1/archive/assets/data/
+sed -i -e 'sX"http://music-mrl.nott.ac.uk/X"http://localhost:8080/X' volumes/html/1/archive/assets/data/musichub-performances.json
+sed -i -e 'sX"http://music-mrl.nott.ac.uk/X"http://localhost:8080/X' volumes/html/1/archive/assets/data/climb-recordings-20170608.json
+```
+
+access localhost:4200 
+
 ## Recordings
 
 E.g. get from music hub server:
@@ -100,4 +115,13 @@ currently using:
  Rehearsal_480_v2.mp4
  Rehearsal_mix2.mp3
 ```
+
+## MELD integration
+
+See [David's fork](https://github.com/oerc-music/music-archive) ?!
+
+Archive app does:
+- init: meldWindow = window.open('http://localhost:8080/archive', 'window', null);	
+- click performance: meldWindow.postMessage({type: "performance", payload:perf.id}, "*"); (or "" if null perf)
+- click part: meldWindow.postMessage({type: "fragment", payload:part.id}, "*");
 

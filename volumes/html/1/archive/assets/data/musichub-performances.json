@@ -100,7 +100,7 @@
       "annal:type": "coll:Linked_audio",
       "annal:type_id": "Linked_audio",
       "annal:url": "/annalist/c/annalist_performance_archive/d/Linked_audio/20180119-allyourbass1_roughmix/",
-      "coll:audio_clip": "/1/recordings/Climb_AYB_Anne-roughmix.mp3",
+      "coll:audio_clip": "http://localhost:8080/1/recordings/Climb_AYB_Anne-roughmix.mp3",
       "rdfs:comment": "Audio of roughmix from Climb! at All Your Bass",
       "rdfs:label": "Audio of roughmix from Climb! at All Your Bass"
     },
@@ -144,7 +144,7 @@
       "annal:type": "coll:Linked_audio",
       "annal:type_id": "Linked_audio",
       "annal:url": "/annalist/c/annalist_performance_archive/d/Linked_audio/20180119-allyourbass1_front/",
-      "coll:audio_clip": "/1/recordings/Climb_AYB_Anne-front.mp4",
+      "coll:audio_clip": "http://localhost:8080/1/recordings/Climb_AYB_Anne-front.mp4",
       "rdfs:comment": "Audio of front from Climb! at All Your Bass",
       "rdfs:label": "Audio of front from Climb! at All Your Bass"
     },
@@ -241,7 +241,7 @@
       "annal:type": "coll:Linked_audio",
       "annal:type_id": "Linked_audio",
       "annal:url": "/annalist/c/annalist_performance_archive/d/Linked_audio/20180119-allyourbass2_roughmix/",
-      "coll:audio_clip": "/1/recordings/Climb_AYB_Zubin-roughmix.mp3",
+      "coll:audio_clip": "http://localhost:8080/1/recordings/Climb_AYB_Zubin-roughmix.mp3",
       "rdfs:comment": "Audio of roughmix from Climb! at All Your Bass (2)",
       "rdfs:label": "Audio of roughmix from Climb! at All Your Bass (2)"
     },
@@ -285,7 +285,7 @@
       "annal:type": "coll:Linked_audio",
       "annal:type_id": "Linked_audio",
       "annal:url": "/annalist/c/annalist_performance_archive/d/Linked_audio/20180119-allyourbass2_front/",
-      "coll:audio_clip": "/1/recordings/Climb_AYB_Zubin-front.mp4",
+      "coll:audio_clip": "http://localhost:8080/1/recordings/Climb_AYB_Zubin-front.mp4",
       "rdfs:comment": "Audio of front from Climb! at All Your Bass (2)",
       "rdfs:label": "Audio of front from Climb! at All Your Bass (2)"
     },
@@ -382,7 +382,7 @@
       "annal:type": "coll:Linked_audio",
       "annal:type_id": "Linked_audio",
       "annal:url": "/annalist/c/annalist_performance_archive/d/Linked_audio/20180221-rcc-1_wide-audio/",
-      "coll:audio_clip": "/1/recordings/Climb_RCC2018_1-front.mp3",
+      "coll:audio_clip": "http://localhost:8080/1/recordings/Climb_RCC2018_1-front.mp3",
       "rdfs:comment": "Audio of wide-audio from Climb! at RCC 2018 (1)",
       "rdfs:label": "Audio of wide-audio from Climb! at RCC 2018 (1)"
     },
@@ -426,7 +426,7 @@
       "annal:type": "coll:Linked_audio",
       "annal:type_id": "Linked_audio",
       "annal:url": "/annalist/c/annalist_performance_archive/d/Linked_audio/20180221-rcc-1_wide/",
-      "coll:audio_clip": "/1/recordings/Climb_RCC2018_1-front-480.mp4",
+      "coll:audio_clip": "http://localhost:8080/1/recordings/Climb_RCC2018_1-front-480.mp4",
       "rdfs:comment": "Audio of wide from Climb! at RCC 2018 (1)",
       "rdfs:label": "Audio of wide from Climb! at RCC 2018 (1)"
     },
@@ -523,7 +523,7 @@
       "annal:type": "coll:Linked_audio",
       "annal:type_id": "Linked_audio",
       "annal:url": "/annalist/c/annalist_performance_archive/d/Linked_audio/20180221-rcc-2_wide-audio/",
-      "coll:audio_clip": "/1/recordings/Climb_RCC2018_2-front.mp3",
+      "coll:audio_clip": "http://localhost:8080/1/recordings/Climb_RCC2018_2-front.mp3",
       "rdfs:comment": "Audio of wide-audio from Climb! at RCC 2018 (2)",
       "rdfs:label": "Audio of wide-audio from Climb! at RCC 2018 (2)"
     },
@@ -567,7 +567,7 @@
       "annal:type": "coll:Linked_audio",
       "annal:type_id": "Linked_audio",
       "annal:url": "/annalist/c/annalist_performance_archive/d/Linked_audio/20180221-rcc-2_wide/",
-      "coll:audio_clip": "/1/recordings/Climb_RCC2018_2-front-480.mp4",
+      "coll:audio_clip": "http://localhost:8080/1/recordings/Climb_RCC2018_2-front-480.mp4",
       "rdfs:comment": "Audio of wide from Climb! at RCC 2018 (2)",
       "rdfs:label": "Audio of wide from Climb! at RCC 2018 (2)"
     },
@@ -664,7 +664,7 @@
       "annal:type": "coll:Linked_audio",
       "annal:type_id": "Linked_audio",
       "annal:url": "/annalist/c/annalist_performance_archive/d/Linked_audio/20180614-finland-1_default/",
-      "coll:audio_clip": "/1/recordings/Climb! Iittala Perf 1-480-149ec5c1b9c037e08f8713759cc5c1e3.mp4",
+      "coll:audio_clip": "http://localhost:8080/1/recordings/Climb! Iittala Perf 1-480-149ec5c1b9c037e08f8713759cc5c1e3.mp4",
       "rdfs:comment": "Audio of default from Climb! in Finland (1)",
       "rdfs:label": "Audio of default from Climb! in Finland (1)"
     },
@@ -761,7 +761,7 @@
       "annal:type": "coll:Linked_audio",
       "annal:type_id": "Linked_audio",
       "annal:url": "/annalist/c/annalist_performance_archive/d/Linked_audio/20180614-finland-2_default/",
-      "coll:audio_clip": "/1/recordings/Climb! Iittala Perf 2-480-bdcb00dc8b34422dbf14bf4eea28fc67.mp4",
+      "coll:audio_clip": "http://localhost:8080/1/recordings/Climb! Iittala Perf 2-480-bdcb00dc8b34422dbf14bf4eea28fc67.mp4",
       "rdfs:comment": "Audio of default from Climb! in Finland (2)",
       "rdfs:label": "Audio of default from Climb! in Finland (2)"
     }
