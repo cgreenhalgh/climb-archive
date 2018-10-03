@@ -1,0 +1,7 @@
+volumes/logs/nginx/http.access.log
+music-archive/
+archive.tgz
+volumes/html/1/recordings/*.mp3
+volumes/html/1/recordings/*.mp4
+.vagrant
+ubuntu-bionic-18.04-cloudimg-console.log

@@ -1,0 +1,442 @@
+{
+  "@context": [
+    {
+      "@base": "/annalist/c/annalist_performance_archive/d/"
+    },
+    "/annalist/c/annalist_performance_archive/d/coll_context.jsonld"
+  ],
+  "@id": "/annalist/c/annalist_performance_archive/l/Default_list_all/",
+  "annal:entity_list": [
+    {
+      "@id": "/annalist/c/annalist_performance_archive/d/_user/admin/",
+      "@type": [
+        "annal:User"
+      ],
+      "annal:id": "admin",
+      "annal:type": "annal:User",
+      "annal:type_id": "_user",
+      "annal:url": "/annalist/c/annalist_performance_archive/d/_user/admin/",
+      "annal:user_permission": [
+        "VIEW",
+        "CREATE",
+        "UPDATE",
+        "DELETE",
+        "CONFIG",
+        "ADMIN"
+      ],
+      "annal:user_uri": "mailto:admin@localhost",
+      "rdfs:comment": "User admin: permissions for Admin User in collection annalist_performance_archive",
+      "rdfs:label": "Admin User"
+    },
+    {
+      "@id": "/annalist/c/annalist_performance_archive/d/Event/Climb_Concert_20170608/",
+      "@type": [
+        "prov:Activity",
+        "crm:E5_Event",
+        "annal:EntityData"
+      ],
+      "annal:id": "Climb_Concert_20170608",
+      "annal:missing_field": "",
+      "annal:type": "prov:Activity",
+      "annal:type_id": "Event",
+      "annal:url": "/annalist/c/annalist_performance_archive/d/Event/Climb_Concert_20170608/",
+      "crm:P126_employed_r": [],
+      "crm:P7_took_place_at": "Place/00000013",
+      "entity:seeAlso_r": [],
+      "prov:qualifiedAssociation": [],
+      "prov:used_r": [],
+      "rdfs:comment": "NottFAR concert 8th June 2017",
+      "rdfs:label": "NottFAR concert 8th June 2017"
+    },
+    {
+      "@id": "/annalist/c/annalist_performance_archive/d/Linked_audio/example_recording_audio_clip/",
+      "@type": [
+        "coll:Linked_audio",
+        "annal:EntityData"
+      ],
+      "annal:id": "example_recording_audio_clip",
+      "annal:type": "coll:Linked_audio",
+      "annal:type_id": "Linked_audio",
+      "annal:url": "/annalist/c/annalist_performance_archive/d/Linked_audio/example_recording_audio_clip/",
+      "coll:audio_clip": "http://some.url/some.file.mp3",
+      "rdfs:comment": "Example recording audio clip",
+      "rdfs:label": "Example recording audio clip"
+    },
+    {
+      "@id": "/annalist/c/annalist_performance_archive/d/Linked_audio/example_recording_audio_clip/",
+      "@type": [
+        "coll:Linked_audio",
+        "annal:EntityData"
+      ],
+      "annal:id": "example_recording_audio_clip",
+      "annal:type": "coll:Linked_audio",
+      "annal:type_id": "Linked_audio",
+      "annal:url": "/annalist/c/annalist_performance_archive/d/Linked_audio/example_recording_audio_clip/",
+      "coll:audio_clip": "http://some.url/some.file.mp3",
+      "rdfs:comment": "Example recording audio clip",
+      "rdfs:label": "Example recording audio clip"
+    },
+    {
+      "@id": "/annalist/c/annalist_performance_archive/d/Part_of_Work/Climb_basecamp/",
+      "@type": [
+        "coll:Part_of_Work",
+        "frbroo:F20_Performance_Work",
+        "annal:EntityData"
+      ],
+      "annal:id": "Climb_basecamp",
+      "annal:member": [],
+      "annal:member__2": [],
+      "annal:type": "coll:Part_of_Work",
+      "annal:type_id": "Part_of_Work",
+      "annal:url": "/annalist/c/annalist_performance_archive/d/Part_of_Work/Climb_basecamp/",
+      "coll:part_id": "basecamp",
+      "coll:part_rank": "1",
+      "entity:seeAlso_r": [],
+      "rdfs:comment": "Basecamp fragment of Climb!",
+      "rdfs:label": "Basecamp (Fragment of Climb!)"
+    },
+    {
+      "@id": "/annalist/c/annalist_performance_archive/d/Performance/Climb_Performance_2/",
+      "@type": [
+        "frbroo:F31_Performance",
+        "prov:Activity",
+        "crm:E5_Event",
+        "crm:E7_Activity",
+        "mo:Performance",
+        "annal:EntityData"
+      ],
+      "annal:id": "Climb_Performance_2",
+      "annal:type": "frbroo:F31_Performance",
+      "annal:type_id": "Performance",
+      "annal:url": "/annalist/c/annalist_performance_archive/d/Performance/Climb_Performance_2/",
+      "coll:system_id": "13a7fa70-ae91-4541-9526-fd3b332b585d",
+      "coll:uploaded_image_r": [],
+      "crm:P7_took_place_at": "",
+      "entity:seeAlso_r": [],
+      "event:sub_event": [],
+      "frbroo:R25F_performed_r": [
+        {
+          "frbroo:R25F_performed": "Performed_work/Climb"
+        }
+      ],
+      "prov:qualifiedAssociation": [
+        {
+          "crm:P12i_was_present_at": "Person/Maria_Kallionpaa",
+          "prov:hadRole": ""
+        }
+      ],
+      "prov:startedAtTime": "2017-06-08T17:30:00Z",
+      "prov:used_r": [],
+      "rdfs:comment": "The second performance of Climb!, during the world premiere, 8th June 2017.",
+      "rdfs:label": "Second performance of Climb!"
+    },
+    {
+      "@id": "/annalist/c/annalist_performance_archive/d/Performance/Climb_am_performance_1/",
+      "@type": [
+        "frbroo:F31_Performance",
+        "prov:Activity",
+        "crm:E5_Event",
+        "crm:E7_Activity",
+        "mo:Performance",
+        "annal:EntityData"
+      ],
+      "annal:id": "Climb_am_performance_1",
+      "annal:type": "frbroo:F31_Performance",
+      "annal:type_id": "Performance",
+      "annal:url": "/annalist/c/annalist_performance_archive/d/Performance/Climb_am_performance_1/",
+      "coll:system_id": "f01a5d26-6569-4879-9aef-58334110c307",
+      "coll:uploaded_image_r": [],
+      "coll:hidden": "true",
+      "crm:P7_took_place_at": "Place/Oxford_House_Theatre",
+      "entity:seeAlso_r": [],
+      "event:sub_event": [],
+      "frbroo:R25F_performed_r": [
+        {
+          "frbroo:R25F_performed": "Performed_work/Climb"
+        }
+      ],
+      "prov:qualifiedAssociation": [
+        {
+          "crm:P12i_was_present_at": "Person/Maria_Kallionpaa",
+          "prov:hadRole": ""
+        }
+      ],
+      "prov:startedAtTime": "2017-08-25T20:00:00Z",
+      "prov:used_r": [],
+      "rdfs:comment": "The performance of Climb! at AudioMostly, 25th August 2017.",
+      "rdfs:label": "Performance of Climb! at AudioMostly"
+    },
+    {
+      "@id": "/annalist/c/annalist_performance_archive/d/Performance/Climb_am_rehearsal/",
+      "@type": [
+        "frbroo:F31_Performance",
+        "prov:Activity",
+        "crm:E5_Event",
+        "crm:E7_Activity",
+        "mo:Performance",
+        "annal:EntityData"
+      ],
+      "annal:id": "Climb_am_rehearsal",
+      "annal:type": "frbroo:F31_Performance",
+      "annal:type_id": "Performance",
+      "annal:url": "/annalist/c/annalist_performance_archive/d/Performance/Climb_am_rehearsal/",
+      "coll:system_id": "e888ea0f-8c81-48a8-8462-bc98dd04f495",
+      "coll:uploaded_image_r": [],
+      "coll:hidden": "true",
+      "crm:P7_took_place_at": "Place/Oxford_House_Theatre",
+      "entity:seeAlso_r": [],
+      "event:sub_event": [],
+      "frbroo:R25F_performed_r": [
+        {
+          "frbroo:R25F_performed": "Performed_work/Climb"
+        }
+      ],
+      "prov:qualifiedAssociation": [
+        {
+          "crm:P12i_was_present_at": "Person/Maria_Kallionpaa",
+          "prov:hadRole": ""
+        }
+      ],
+      "prov:startedAtTime": "2017-08-25T15:00:00Z",
+      "prov:used_r": [],
+      "rdfs:comment": "Dress rehearsal of Climb! (if there is one) at AudioMostly, 25th August 2017.",
+      "rdfs:label": "Climb rehearsal at AudioMostly"
+    },
+    {
+      "@id": "/annalist/c/annalist_performance_archive/d/Performance/Climb_performance_1/",
+      "@type": [
+        "frbroo:F31_Performance",
+        "prov:Activity",
+        "crm:E5_Event",
+        "crm:E7_Activity",
+        "mo:Performance",
+        "annal:EntityData"
+      ],
+      "annal:id": "Climb_performance_1",
+      "annal:missing_field": "",
+      "annal:type": "frbroo:F31_Performance",
+      "annal:type_id": "Performance",
+      "annal:url": "/annalist/c/annalist_performance_archive/d/Performance/Climb_performance_1/",
+      "coll:system_id": "be418821-436d-41c2-880c-058dffb57d91",
+      "coll:uploaded_image_r": [],
+      "crm:P126_employed_r": [],
+      "crm:P7_took_place_at": "Place/Djanogly_Recital_Hall",
+      "entity:seeAlso_r": [],
+      "event:sub_event": [],
+      "frbroo:R25F_performed_r": [
+        {
+          "frbroo:R25F_performed": "Performed_work/Climb"
+        }
+      ],
+      "prov:qualifiedAssociation": [],
+      "prov:startedAtTime": "2017-06-08T16:05:00Z",
+      "prov:used_r": [],
+      "rdfs:comment": "The world premiere performance of Climb!, 8th June 2017.",
+      "rdfs:label": "Premiere performance of Climb!"
+    },
+    {
+      "@id": "/annalist/c/annalist_performance_archive/d/Performance/Climb_performance_test/",
+      "@type": [
+        "frbroo:F31_Performance",
+        "prov:Activity",
+        "crm:E5_Event",
+        "crm:E7_Activity",
+        "mo:Performance",
+        "annal:EntityData"
+      ],
+      "annal:id": "Climb_performance_test",
+      "annal:type": "frbroo:F31_Performance",
+      "annal:type_id": "Performance",
+      "annal:url": "/annalist/c/annalist_performance_archive/d/Performance/Climb_performance_test/",
+      "coll:system_id": "9333e7a2-16a9-4352-a45a-f6f42d848cde",
+      "coll:uploaded_image_r": [],
+      "crm:P7_took_place_at": "",
+      "entity:seeAlso_r": [],
+      "event:sub_event": [
+        {
+          "event:sub_event": "Performance/Perform_Climb_basecamp_test"
+        }
+      ],
+      "frbroo:R25F_performed_r": [
+        {
+          "frbroo:R25F_performed": "Performed_work/Climb"
+        }
+      ],
+      "prov:qualifiedAssociation": [],
+      "prov:startedAtTime": "2017-06-08T14:12:00Z",
+      "prov:used_r": [],
+      "rdfs:comment": "The dress rehearsal of Climb! just before the Premiere performance, 8th June 2017.",
+      "rdfs:label": "Dress rehearsal of Climb!"
+    },
+    {
+      "@id": "/annalist/c/annalist_performance_archive/d/Performance/Perform_Climb_basecamp_test/",
+      "@type": [
+        "frbroo:F31_Performance",
+        "prov:Activity",
+        "crm:E5_Event",
+        "crm:E7_Activity",
+        "mo:Performance",
+        "annal:EntityData"
+      ],
+      "annal:id": "Perform_Climb_basecamp_test",
+      "annal:type": "frbroo:F31_Performance",
+      "annal:type_id": "Performance",
+      "annal:url": "/annalist/c/annalist_performance_archive/d/Performance/Perform_Climb_basecamp_test/",
+      "coll:system_id": "123",
+      "coll:uploaded_image_r": [],
+      "crm:P7_took_place_at": "",
+      "entity:seeAlso_r": [],
+      "frbroo:R25F_performed_r": [
+        {
+          "frbroo:R25F_performed": "Part_of_Work/Climb_basecamp"
+        }
+      ],
+      "prov:qualifiedAssociation": [],
+      "prov:startedAtTime": "2017-06-08T17:34:00Z",
+      "prov:used_r": [],
+      "rdfs:comment": "Example performance of Climb basecamp",
+      "rdfs:label": "Example performance of Climb basecamp"
+    },
+    {
+      "@id": "/annalist/c/annalist_performance_archive/d/Performed_work/Climb/",
+      "@type": [
+        "frbroo:F20_Performance_Work",
+        "prov:Entity",
+        "crm:E77_Persistent_Item",
+        "crm:E70_Thing",
+        "crm:E71_Man-Made_Thing",
+        "crm:E29_Design_or_Procedure",
+        "crm:E73_Information_Object",
+        "crm:E28_Conceptual_Object",
+        "frbroo:frbroo:F1_Work",
+        "annal:EntityData"
+      ],
+      "annal:id": "Climb",
+      "annal:member": [
+        {
+          "prov:wasAttributedTo": "Person/Maria_Kallionpaa"
+        }
+      ],
+      "annal:member__2": [
+        {
+          "crm:P12i_was_present_at": "Event/Climb_Concert_20170608"
+        }
+      ],
+      "annal:type": "frbroo:F20_Performance_Work",
+      "annal:type_id": "Performed_work",
+      "annal:url": "/annalist/c/annalist_performance_archive/d/Performed_work/Climb/",
+      "entity:seeAlso_r": [
+        {
+          "rdfs:seeAlso": "http://homes.create.aau.dk/dano/nime17/papers/0088/index.html"
+        },
+        {
+          "rdfs:seeAlso": "http://eprints.nottingham.ac.uk/37081/"
+        },
+        {
+          "rdfs:seeAlso": "http://eprints.nottingham.ac.uk/41837/"
+        },
+        {
+          "rdfs:seeAlso": "https://musicbrainz.org/work/aa3fc450-f768-470f-91aa-045b6db0d6f3"
+        }
+      ],
+      "frbroo:R10_has_member": [
+        {
+          "frbroo:R10_has_member": "Part_of_Work/Climb_basecamp"
+        }
+      ],
+      "rdfs:comment": "<p>Climb! is a musical composition that combines the ideas of a classical virtuoso piece and a computer game.</p>\r\n\r\n<p>Written for a Disklavier grand piano, the work engages the pianist in an unusual musical dialogue where there is no fixed musical form: the performer\u2019s/gamer\u2019s actions define how the story continues. As the performer plays key passages, so both the music and the instrument respond, jumping to new points in the score, transforming the sound, or independently playing along with them \u2013 physically in the case of the Disklavier. An interactive system like this resembles \u201can invisible chamber music partner\u201d leading some musicians to claim that electroacoustic works can never be treated as solo compositions, but should instead be seen as \u201cconcertos in a modern guise\u201d.</p>\r\n\r\n<p>Like a computer game or the World Wide Web, Climb! is non-linear, with a branching structure that allows the performer to choose different routes through the work. It consists of three macro-compositions called paths with some further side paths between them. Various micro-compositions are then dispersed along each path. Depending on how the performer plays, they may continue to progress along their current path or be diverted onto another one.</p>\r\n\r\n<h3>How it works</h3>\r\n\r\n<p>Climb! Is realised using a combination of technologies. It is played on a Disklavier piano that can be instructed to physically play back computer generated parts (using the MIDI protocol) and can even duet along with the pianist, moving its keys around and between their fingers. Climb! also uses the Max/MSP software running on a laptop to generate various audio effects that transform the piano\u2019s sound.</p>\r\n \r\n<p>The performer controls how the work progresses \u2013 which path they follow and how they negotiate various events along the way \u2013 directly through their playing rather than by pressing buttons, pushing pedals or having someone do this from behind the scenes. This employs a technology called <a href=\"http://eprints.nottingham.ac.uk/37081/\">Muzicodes</a> from the University of Nottingham\u2019s Mixed Reality Lab. Muzicodes allows certain phrases in the score to be designated as hidden codes that, when successfully played by the pianist, trigger events such as jumping to a new place in the score (like following a hyperlink on the World Wide Web); introducing an audio effect to represent weather, animals, stones and so forth; causing the Disklavier to duet with the pianist; driving the projected animations; and finally controlling the dynamic programme notes.</p>\r\n \r\n<p>The MELD software from the University of Oxford is used to render the pianist\u2019s score, turning the digital pages for them as they negotiate their route through the piece.</p>\r\n",
+      "rdfs:label": "Climb!"
+    },
+    {
+      "@id": "/annalist/c/annalist_performance_archive/d/Person/Maria_Kallionpaa/",
+      "@type": [
+        "crm:E21_Person",
+        "prov:Entity",
+        "prov:Agent",
+        "crm:E39_Actor",
+        "crm:E77_Persistent_Item",
+        "annal:EntityData"
+      ],
+      "annal:id": "Maria_Kallionpaa",
+      "annal:type": "crm:E21_Person",
+      "annal:type_id": "Person",
+      "annal:url": "/annalist/c/annalist_performance_archive/d/Person/Maria_Kallionpaa/",
+      "entity:seeAlso_r": [
+        {
+          "rdfs:seeAlso": "https://musicbrainz.org/artist/e64ba083-58f6-49e5-9bd7-92883d6fb10f"
+        },
+        {
+          "rdfs:seeAlso": "https://soundcloud.com/m-kallionpaa"
+        }
+      ],
+      "foaf:name": "Maria Kallionp\u00e4\u00e4",
+      "rdfs:comment": "Dr. Maria Kallionp\u00e4\u00e4\u00a0(1981) is an internationally active composer and pianist. She earned her PhD in composition at the university of Oxford in 2015. Kallionp\u00e4\u00e4 won the first prize of the OUPHIL composition competition in 2013. She has graduated from the Royal Academy of Music (2009) and Universit\u00e4t f\u00fcr Musik und Darstellende Kunst Wien (2010) and has also studied composition and piano at Sibelius Academy and Universit\u00e4t Mozarteum Salzburg.\u00a0Her works have been performed at Musikverein Wien, Philharmonie Luxembourg, and Sibiu Philharmonia. In 2011 Kallionp\u00e4\u00e4 was a commissioned composer of the Turku European Culture Capital and a finalist of the Tenso European Chamber Choir Composition Competition.  Kallionp\u00e4\u00e4 has performed at numerous music festivals including Rainy Days Festival at Philharmonie Luxembourg, Musica Nova (Helsinki), Spitalfields Festival (London), and Neue Musik von Thuringen. In 2016 her music was performed at the Florida International Toy Piano Festival.\r\n\u00a0\r\nKallionp\u00e4\u00e4 currently works as a postdoctoral fellow at the university of Aalborg and as a composer in residence of the Mixed Reality Laboratory of the Nottingham University. Her artistic research project focuses on designing a music engine that uses gamification as a composition technique. Kallionp\u00e4\u00e4 is a winner of the Fabbrica Young Artist Development Program of Opera di Roma, for which she is currently composing a new opera that will be premiered in 2017. Moreover, in collaboration with her colleague Markku Klami, Kallionp\u00e4\u00e4 is also working on the first full-length puppet opera produced in the Nordic Countries, which will premiere in 2018. Kallionp\u00e4\u00e4 was a laureate of Acad\u00e9mie de France \u00e0 Rome in\u00a02016.\u00a0",
+      "rdfs:label": "Maria Kallionp\u00e4\u00e4"
+    },
+    {
+      "@id": "/annalist/c/annalist_performance_archive/d/Place/Djanogly_Recital_Hall/",
+      "@type": [
+        "crm:E53_Place",
+        "annal:EntityData"
+      ],
+      "annal:id": "Djanogly_Recital_Hall",
+      "annal:type": "crm:E53_Place",
+      "annal:type_id": "Place",
+      "annal:url": "/annalist/c/annalist_performance_archive/d/Place/Djanogly_Recital_Hall/",
+      "crm:P89_falls_within": "",
+      "crm:P89i_contains_repeat": [],
+      "entity:seeAlso_r": [
+        {
+          "rdfs:seeAlso": "https://musicbrainz.org/place/64a44f4f-9c29-4d42-a5be-18b8a9cebd23"
+        }
+      ],
+      "rdfs:comment": "Djanogly Recital Hall, Nottingham",
+      "rdfs:label": "Djanogly Recital Hall, Nottingham"
+    },
+    {
+      "@id": "/annalist/c/annalist_performance_archive/d/Place/Oxford_House_Theatre/",
+      "@type": [
+        "crm:E53_Place",
+        "annal:EntityData"
+      ],
+      "annal:id": "Oxford_House_Theatre",
+      "annal:type": "crm:E53_Place",
+      "annal:type_id": "Place",
+      "annal:url": "/annalist/c/annalist_performance_archive/d/Place/Oxford_House_Theatre/",
+      "crm:P89_falls_within": "",
+      "crm:P89i_contains_repeat": [],
+      "entity:seeAlso_r": [],
+      "rdfs:comment": "Oxford House Theatre, London",
+      "rdfs:label": "Oxford House Theatre, London"
+    },
+    {
+      "@id": "/annalist/c/annalist_performance_archive/d/Recording/Example_recording_of_climb/",
+      "@type": [
+        "frbroo:F26_Recording",
+        "prov:Entity",
+        "crm:E70_Thing",
+        "crm:E71_Man-Made_Thing",
+        "crm:E28_Conceptual_Object",
+        "frbroo:F2_Expression",
+        "mo:MusicalExpression",
+        "annal:EntityData"
+      ],
+      "annal:id": "Example_recording_of_climb",
+      "annal:type": "frbroo:F26_Recording",
+      "annal:type_id": "Recording",
+      "annal:url": "/annalist/c/annalist_performance_archive/d/Recording/Example_recording_of_climb/",
+      "coll:linked_audio_clips": [
+        {
+          "coll:linked_audio_m": "Linked_audio/example_recording_audio_clip"
+        }
+      ],
+      "coll:linked_images": [],
+      "entity:seeAlso_r": [],
+      "mo:records": "Performance/Climb_performance_1",
+      "prov:hadMember_repeat": [],
+      "prov:startedAtTime": "2017-06-08T16:05:00.000Z",
+      "rdfs:comment": "Recording of Premiere of Climb!",
+      "rdfs:label": "Recording of Premiere of Climb!"
+    }
+  ]
+}
