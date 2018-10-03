@@ -59,6 +59,10 @@ Archive:
 ```
 git clone https://github.com/cgreenhalgh/music-archive.git
 cd music-archive/archive-app
+
+??
+git checkout linkapps
+
 sudo docker build -t archive-app .
 sudo docker run --rm archive-app cat /root/work/archive.tgz| cat - > archive.tgz
 cd ../..
@@ -71,6 +75,15 @@ cp data/archive/* volumes/html/1/archive/assets/data/
 sed -i -e 'sX"http://music-mrl.nott.ac.uk/X"/X' volumes/html/1/archive/assets/data/musichub-performances.json
 sed -i -e 'sX"http://music-mrl.nott.ac.uk/X"/X' volumes/html/1/archive/assets/data/climb-recordings-20170608.json
 ```
+
+Muzivisual (for archive):
+```
+git clone https://github.com/cgreenhalgh/muzivisual.git
+(cd muzivisual; git checkout linkapps)
+(cd muzivisual/app/public; tar zcf - *) | (cd volumes/html/1/archive-muzivisual; tar zxf -)
+cp data/muzivisual/* volumes/html/1/archive-muzivisual/data/
+```
+
 
 ## Dev
 
