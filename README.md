@@ -81,6 +81,7 @@ Archive:
 
 ```
 git clone https://github.com/cgreenhalgh/music-archive.git
+git checkout meld
 cd music-archive/archive-app
 
 sudo docker build -t archive-app .
@@ -94,6 +95,9 @@ Data (and use local file URLs):
 cp data/archive/* volumes/html/1/archive/assets/data/
 sed -i -e 'sX"http://music-mrl.nott.ac.uk/X"/X' volumes/html/1/archive/assets/data/musichub-performances.json
 sed -i -e 'sX"http://music-mrl.nott.ac.uk/X"/X' volumes/html/1/archive/assets/data/climb-recordings-20170608.json
+# or dev
+sed -i -e 'sX"http://music-mrl.nott.ac.uk/X"http://localhost:8080/X' volumes/html/1/archive/assets/data/musichub-performances.json
+sed -i -e 'sX"http://music-mrl.nott.ac.uk/X"http://localhost:8080/X' volumes/html/1/archive/assets/data/climb-recordings-20170608.json
 ```
 
 Muzivisual (for archive):
