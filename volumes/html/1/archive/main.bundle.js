@@ -145,13 +145,19 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__performance_detail_component__ = __webpack_require__("../../../../../src/app/performance-detail.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__parts_map_component__ = __webpack_require__("../../../../../src/app/parts-map.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__records_service__ = __webpack_require__("../../../../../src/app/records.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__app_routing_module__ = __webpack_require__("../../../../../src/app/app-routing.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__linkapps_service__ = __webpack_require__("../../../../../src/app/linkapps.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__playlist_form_component__ = __webpack_require__("../../../../../src/app/playlist-form.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__playlist_item_form_component__ = __webpack_require__("../../../../../src/app/playlist-item-form.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__app_routing_module__ = __webpack_require__("../../../../../src/app/app-routing.module.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
+
 
 
 
@@ -176,16 +182,19 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_7__work_detail_component__["a" /* WorkDetailComponent */],
                 __WEBPACK_IMPORTED_MODULE_8__work_explorer_component__["a" /* WorkExplorerComponent */],
                 __WEBPACK_IMPORTED_MODULE_9__performance_detail_component__["a" /* PerformanceDetailComponent */],
-                __WEBPACK_IMPORTED_MODULE_10__parts_map_component__["a" /* PartsMapComponent */]
+                __WEBPACK_IMPORTED_MODULE_10__parts_map_component__["a" /* PartsMapComponent */],
+                __WEBPACK_IMPORTED_MODULE_14__playlist_item_form_component__["a" /* PlaylistItemFormComponent */],
+                __WEBPACK_IMPORTED_MODULE_13__playlist_form_component__["a" /* PlaylistFormComponent */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormsModule */],
-                __WEBPACK_IMPORTED_MODULE_12__app_routing_module__["a" /* AppRoutingModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_forms__["b" /* FormsModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_forms__["e" /* ReactiveFormsModule */],
+                __WEBPACK_IMPORTED_MODULE_15__app_routing_module__["a" /* AppRoutingModule */],
                 __WEBPACK_IMPORTED_MODULE_3__angular_http__["b" /* HttpModule */],
                 __WEBPACK_IMPORTED_MODULE_4__ng_bootstrap_ng_bootstrap__["a" /* NgbModule */].forRoot()
             ],
-            providers: [__WEBPACK_IMPORTED_MODULE_11__records_service__["a" /* RecordsService */]],
+            providers: [__WEBPACK_IMPORTED_MODULE_11__records_service__["a" /* RecordsService */], __WEBPACK_IMPORTED_MODULE_12__linkapps_service__["a" /* LinkappsService */]],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* AppComponent */]]
         })
     ], AppModule);
@@ -314,6 +323,71 @@ var Entity = (function () {
         return Number(v1[0]) - Number(v2[0]);
     };
     return Entity;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/linkapps.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LinkappsService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+//import { RTCPeerConnection } from 'webrtc';
+var LinkappsService = (function () {
+    function LinkappsService() {
+        var _this = this;
+        this.messageEmitter = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["w" /* EventEmitter */]();
+        console.log('created LinkappsService');
+        window.addEventListener('message', function (ev) { return _this.onMessage(ev); });
+    }
+    LinkappsService.prototype.onMessage = function (ev) {
+        console.log('window message: ', ev);
+        if (typeof ev.data == 'string') {
+            var msg = JSON.parse(ev.data);
+            if ('mrl-music.archive/1.0' != msg.version) {
+                console.log('ignore window message with no/wrong version: ', ev.data);
+                return;
+            }
+            this.messageEmitter.emit(msg);
+        }
+    };
+    LinkappsService.prototype.getEmitter = function () {
+        return this.messageEmitter;
+    };
+    LinkappsService.prototype.openMeld = function () {
+        console.log('open meld');
+        this.meldWindow = window.open('http://localhost:8080/archive', 'window', null);
+    };
+    LinkappsService.prototype.meldPerformance = function (performanceid) {
+        if (!this.meldWindow)
+            return;
+        console.log("set meld performance " + performanceid);
+        this.meldWindow.postMessage({ type: "performance", payload: performanceid }, "*");
+    };
+    LinkappsService.prototype.meldPart = function (partid) {
+        if (!this.meldWindow)
+            return;
+        console.log("set meld part " + partid);
+        this.meldWindow.postMessage({ type: "fragment", payload: partid }, "*");
+    };
+    LinkappsService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+        __metadata("design:paramtypes", [])
+    ], LinkappsService);
+    return LinkappsService;
 }());
 
 
@@ -518,6 +592,287 @@ var PerformanceDetailComponent = (function () {
 
 /***/ }),
 
+/***/ "../../../../../src/app/playlist-form.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".modal {\n  background: rgba(0,0,0,0.6);\n}\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/playlist-form.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"modal\" tabindex=\"-1\" role=\"dialog\" [ngStyle]=\"{'display': 'block'}\">\n  <div class=\"modal-dialog\" role=\"document\">\n    <div class=\"modal-content\">\n    <form [formGroup]=\"form\" (ngSubmit)=\"onSubmit()\">\n      <div class=\"modal-header\">\n        <h5 class=\"modal-title\">Edit Playlist</h5>\n        <button type=\"button\" class=\"close\" (click)=\"revert()\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div class=\"modal-body\">\n        <div class=\"form-group\">\n          <label class=\"center-block\">Title:</label>\n          <input class=\"form-control\" formControlName=\"title\">\n        </div>\n        <div class=\"form-group\">\n          <label class=\"center-block\">Import:</label>\n          <input type=\"file\" (change)=\"fileUpdated($event)\" formControlName=\"file\" accept=\"application/json\"/>\n        </div>\n      </div>\n      <div class=\"modal-footer\">\n        <button [disabled]=\"disabled || !form.valid\" type=\"submit\" class=\"btn btn-primary\">Save</button>\n        <button [disabled]=\"disabled\" type=\"button\" class=\"btn btn-secondary\" (click)=\"onExport()\">Export</button>\n        <button [disabled]=\"disabled\" type=\"button\" class=\"btn btn-secondary\" (click)=\"revert()\">Cancel</button>\n        <button [disabled]=\"disabled\" type=\"button\" class=\"btn btn-secondary\" (click)=\"onDelete()\">Delete</button>\n      </div>\n    </form>\n    </div>\n  </div>\n</div>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/playlist-form.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PlaylistFormComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("../../../forms/esm5/forms.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__types__ = __webpack_require__("../../../../../src/app/types.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var PlaylistFormComponent = (function () {
+    function PlaylistFormComponent(fb) {
+        this.fb = fb;
+        this.save = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["w" /* EventEmitter */]();
+        this.cancel = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["w" /* EventEmitter */]();
+        this.dodelete = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["w" /* EventEmitter */]();
+        this.doexport = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["w" /* EventEmitter */]();
+        this.createForm();
+    }
+    PlaylistFormComponent.prototype.createForm = function () {
+        this.form = this.fb.group({
+            title: ['', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* Validators */].required],
+            file: [''],
+        });
+    };
+    PlaylistFormComponent.prototype.ngOnChanges = function () {
+        this.rebuildForm();
+        if (this.disabled)
+            this.form.disable();
+        else
+            this.form.enable();
+    };
+    PlaylistFormComponent.prototype.rebuildForm = function () {
+        console.log('rebuild form', this.playlist);
+        this.form.reset(this.playlist);
+    };
+    PlaylistFormComponent.prototype.fileUpdated = function ($event) {
+        var _this = this;
+        var files = $event.target.files || $event.srcElement.files;
+        this.file = files[0];
+        console.log('change file', this.file);
+        var reader = new FileReader();
+        reader.addEventListener("loadend", function () {
+            // reader.result contains the contents of blob as a typed array
+            var text = reader.result;
+            try {
+                var info = JSON.parse(text);
+                if (info.title === undefined || info.items === undefined) {
+                    console.log('does not resemble playlist', info);
+                    alert('Sorry, that does not seem to be a valid playlist');
+                }
+                console.log('read playlist', info);
+                _this.playlist = info;
+                _this.rebuildForm();
+            }
+            catch (err) {
+                console.log('error parsing file as json', err);
+                alert('Sorry, that does not seem to be a valid playlist');
+            }
+        });
+        reader.readAsText(this.file);
+    };
+    PlaylistFormComponent.prototype.onSubmit = function () {
+        this.playlist = this.prepareSavePlaylist();
+        this.rebuildForm();
+        this.save.emit(this.playlist);
+    };
+    PlaylistFormComponent.prototype.prepareSavePlaylist = function () {
+        var formModel = this.form.value;
+        var savePlaylist = {
+            title: formModel.title,
+            items: this.playlist.items,
+        };
+        return savePlaylist;
+    };
+    PlaylistFormComponent.prototype.revert = function () {
+        this.rebuildForm();
+        this.cancel.emit(null);
+    };
+    PlaylistFormComponent.prototype.onDelete = function () {
+        this.dodelete.emit(null);
+    };
+    PlaylistFormComponent.prototype.onExport = function () {
+        var playlist = this.prepareSavePlaylist();
+        this.doexport.emit(playlist);
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_2__types__["a" /* PlaylistInfo */])
+    ], PlaylistFormComponent.prototype, "playlist", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
+        __metadata("design:type", Boolean)
+    ], PlaylistFormComponent.prototype, "disabled", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Q" /* Output */])(),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["w" /* EventEmitter */])
+    ], PlaylistFormComponent.prototype, "save", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Q" /* Output */])(),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["w" /* EventEmitter */])
+    ], PlaylistFormComponent.prototype, "cancel", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Q" /* Output */])(),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["w" /* EventEmitter */])
+    ], PlaylistFormComponent.prototype, "dodelete", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Q" /* Output */])(),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["w" /* EventEmitter */])
+    ], PlaylistFormComponent.prototype, "doexport", void 0);
+    PlaylistFormComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'playlist-form',
+            template: __webpack_require__("../../../../../src/app/playlist-form.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/playlist-form.component.css")]
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormBuilder */]])
+    ], PlaylistFormComponent);
+    return PlaylistFormComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/playlist-item-form.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"modal\" tabindex=\"-1\" role=\"dialog\" [ngStyle]=\"{'display': 'block'}\">\n  <div class=\"modal-dialog\" role=\"document\">\n    <div class=\"modal-content\">\n    <form [formGroup]=\"form\" (ngSubmit)=\"onSubmit()\">\n      <div class=\"modal-header\">\n        <h5 class=\"modal-title\">Edit Playlist Item</h5>\n        <button type=\"button\" class=\"close\" (click)=\"revert()\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div class=\"modal-body\">\n        <div class=\"form-group\">\n          <label class=\"center-block\">Title:</label>\n          <input class=\"form-control\" formControlName=\"title\">\n        </div>\n        <div class=\"form-group\">\n          <label class=\"center-block\">Start Time:</label>\n          <button type=\"button\" class=\"btn btn-secondary btn-sm\" (click)=\"resetStartTime()\">Clear</button>\n          <button *ngIf=\"item.currentTime!==undefined\" type=\"button\" class=\"btn btn-secondary btn-sm\" (click)=\"setStartTime()\">Now</button>\n          <input class=\"form-control\" type=\"number\" min=\"0\" formControlName=\"startTime\">\n        </div>\n        <div class=\"form-group\">\n          <label class=\"center-block\">End Time:</label>\n          <button type=\"button\" class=\"btn btn-secondary btn-sm\" (click)=\"resetEndTime()\">Clear</button>\n          <button *ngIf=\"item.currentTime!==undefined\" type=\"button\" class=\"btn btn-secondary btn-sm\" (click)=\"setEndTime()\">Now</button>\n          <input class=\"form-control\" type=\"number\" min=\"0\" formControlName=\"endTime\">\n        </div>\n      </div>\n      <div class=\"modal-footer\">\n        <button [disabled]=\"disabled || !form.valid\" type=\"submit\" class=\"btn btn-primary\">Save</button>\n        <button [disabled]=\"disabled\" type=\"button\" class=\"btn btn-secondary\" (click)=\"revert()\">Cancel</button>\n        <button [disabled]=\"disabled\" type=\"button\" class=\"btn btn-secondary\" (click)=\"onDelete()\">Delete</button>\n      </div>\n    </form>\n    </div>\n  </div>\n</div>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/playlist-item-form.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PlaylistItemFormComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("../../../forms/esm5/forms.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var PlaylistItemFormComponent = (function () {
+    function PlaylistItemFormComponent(fb) {
+        this.fb = fb;
+        this.save = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["w" /* EventEmitter */]();
+        this.cancel = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["w" /* EventEmitter */]();
+        this.dodelete = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["w" /* EventEmitter */]();
+        this.createForm();
+    }
+    PlaylistItemFormComponent.prototype.createForm = function () {
+        this.form = this.fb.group({
+            title: ['', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* Validators */].required],
+            startTime: [''],
+            endTime: [''],
+        });
+    };
+    PlaylistItemFormComponent.prototype.ngOnChanges = function () {
+        this.rebuildForm();
+        if (this.disabled)
+            this.form.disable();
+        else
+            this.form.enable();
+    };
+    PlaylistItemFormComponent.prototype.rebuildForm = function () {
+        console.log('rebuild form', this.item);
+        this.form.reset(this.item);
+    };
+    PlaylistItemFormComponent.prototype.onSubmit = function () {
+        this.item = this.prepareSaveItem();
+        this.rebuildForm();
+        this.save.emit(this.item);
+    };
+    PlaylistItemFormComponent.prototype.prepareSaveItem = function () {
+        var formModel = this.form.value;
+        var saveItem = {
+            title: formModel.title,
+            performance: this.item.performance,
+            part: this.item.part,
+            startTime: (formModel.startTime ? Number(formModel.startTime) : null),
+            endTime: (formModel.endTime ? Number(formModel.endTime) : null),
+        };
+        return saveItem;
+    };
+    PlaylistItemFormComponent.prototype.revert = function () {
+        this.rebuildForm();
+        this.cancel.emit(null);
+    };
+    PlaylistItemFormComponent.prototype.onDelete = function () {
+        this.dodelete.emit(null);
+    };
+    PlaylistItemFormComponent.prototype.resetStartTime = function () {
+        this.form.get('startTime').setValue(null);
+    };
+    PlaylistItemFormComponent.prototype.setStartTime = function () {
+        this.form.get('startTime').setValue(this.item.currentTime);
+    };
+    PlaylistItemFormComponent.prototype.resetEndTime = function () {
+        this.form.get('endTime').setValue(null);
+    };
+    PlaylistItemFormComponent.prototype.setEndTime = function () {
+        this.form.get('endTime').setValue(this.item.currentTime);
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
+        __metadata("design:type", Object)
+    ], PlaylistItemFormComponent.prototype, "item", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
+        __metadata("design:type", Boolean)
+    ], PlaylistItemFormComponent.prototype, "disabled", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Q" /* Output */])(),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["w" /* EventEmitter */])
+    ], PlaylistItemFormComponent.prototype, "save", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Q" /* Output */])(),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["w" /* EventEmitter */])
+    ], PlaylistItemFormComponent.prototype, "cancel", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Q" /* Output */])(),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["w" /* EventEmitter */])
+    ], PlaylistItemFormComponent.prototype, "dodelete", void 0);
+    PlaylistItemFormComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'playlist-item-form',
+            template: __webpack_require__("../../../../../src/app/playlist-item-form.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/playlist-form.component.css")]
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormBuilder */]])
+    ], PlaylistItemFormComponent);
+    return PlaylistItemFormComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "../../../../../src/app/records.service.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -665,6 +1020,21 @@ var RecordsService = (function () {
 
 /***/ }),
 
+/***/ "../../../../../src/app/types.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PlaylistInfo; });
+var PlaylistInfo = (function () {
+    function PlaylistInfo() {
+    }
+    return PlaylistInfo;
+}());
+
+
+
+/***/ }),
+
 /***/ "../../../../../src/app/work-detail.component.html":
 /***/ (function(module, exports) {
 
@@ -749,7 +1119,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "/* work-explorer */\n.performance {\n\tborder: 1px solid rgba(128,128,128,0.2);\n}\n.part {\n\tborder: 1px solid rgba(128,128,128,0.2);\n}\n.highlighted {\n\t/*box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2), 0 0 20px 0 rgba(0, 0, 0, 0.19);*/\n\tbackground-color: rgba(0,0,0,0.1);\n}\n.pointer {\n\tcursor: pointer;\n}\na {\n\tcursor: pointer;\n\t-webkit-user-select: none;\n\t   -moz-user-select: none;\n\t    -ms-user-select: none;\n\t        user-select: none;\n}\ni {\n\tvertical-align: middle;\n}\nspan.time {\n\tfont-family: monospace;\n\tfont-size: 150%;\n}\nspan.performer {\n\tfont-style: italic;\n}\n.countdown.inactive {\n\t/*background-color: rgba(0,0,0,0.1);*/\n}\n.countdown.active {\n\tbackground-color: rgba(0,1,0,0.5);\n}\n.time.highlight {\n\tbackground-color: rgba(0,1,0,0.2);\n}\nvideo {\n\twidth: 100%;\n\theight: auto;\n}\nvideo.hidden {\n\tdisplay: none;\n}\n", ""]);
+exports.push([module.i, "/* work-explorer */\n.performance {\n\tborder: 1px solid rgba(128,128,128,0.2);\n}\n.part {\n\tborder: 1px solid rgba(128,128,128,0.2);\n}\n.highlighted {\n\t/*box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2), 0 0 20px 0 rgba(0, 0, 0, 0.19);*/\n\tbackground-color: rgba(0,0,0,0.1);\n}\n.pointer {\n\tcursor: pointer;\n}\na {\n\tcursor: pointer;\n\t-webkit-user-select: none;\n\t   -moz-user-select: none;\n\t    -ms-user-select: none;\n\t        user-select: none;\n}\ni {\n\tvertical-align: middle;\n}\nspan.time {\n\tfont-family: monospace;\n\tfont-size: 150%;\n}\nspan.performer {\n\tfont-style: italic;\n}\n.countdown.inactive {\n\t/*background-color: rgba(0,0,0,0.1);*/\n}\n.countdown.active {\n\tbackground-color: rgba(0,1,0,0.5);\n}\n.time.highlight {\n\tbackground-color: rgba(0,1,0,0.2);\n}\nvideo {\n\twidth: 100%;\n\theight: auto;\n}\nvideo.hidden {\n\tdisplay: none;\n}\n\n.hidden {\n\tdisplay:none;\n}\n.appframe {\n\tposition: fixed;\n\tbottom: 3px;\n\tright: 3px;\n\twidth: 317px;\n\theight: 525px;\n\tborder: 3px solid grey;\n\tborder-radius: 3px;\n\tbackground: black;\n\tz-index: 10;\n}\n.appframeContent {\n\twidth: 480px;\n\theight: 800px;\n    -webkit-transform: scale(0.65);\n    transform: scale(0.65);\n    -webkit-transform-origin: 0 0;\n    transform-origin: 0 0;\n}\n.containerShiftLeft {\n\tmargin-left: 30px !important;\n}\n@media screen and (max-width: 1200px) {\n\t.hideIfNotWide {\n\t\tdisplay:none;\n\t}\n}\n.blankAtBottom {\n\theight: 300px;\n}\n.playlistFeedback {\n  position: relative;\n  display: inline-block;\n  border-bottom: 1px dotted grey;\n  color: #005050;\n}\n\n.playlistFeedback .playlistFeedbackText {\n  /*visibility: hidden;*/\n  position: absolute;\n  width: auto;\n/*  background-color: #4f4;\n  color: #fff;\n  text-align: center;\n  padding: 2px;\n  border-radius: 5px; */\n  z-index: 1;\n  opacity: 0;\n  transition: opacity 1s;\n  top: 100%;\n   margin-left: 10px;\n  /*bottom: 20%*/;\n  /*margin-left: -60px;*/\n}\n\n.playlistFeedback .playlistFeedbackTextVisible {\n  /*visibility: visible;*/\n  opacity: 1;\n  transition: opacity .1s;\n}\n\n..playlistFeedback-top {\n  bottom: 90%;\n  /*margin-left: -60px;*/\n}\n\n", ""]);
 
 // exports
 
@@ -762,7 +1132,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/work-explorer.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\" *ngIf=\"work\"><h1>{{work.label}}</h1>\n<!-- <i class=\"material-icons\">face</i> -->\n\t<p><a [routerLink]=\"['/work', work.id]\">More about {{work.label}}...</a></p>\n\t<p *ngIf=\"!showMap\">Select <i class=\"material-icons\">check_box_outline_blank</i> a Performance then play <i class=\"material-icons\">play_circle_outline</i> its parts, or select <i class=\"material-icons\">check_box_outline_blank</i> a Part then play <i class=\"material-icons\">play_circle_outline</i> the different versions available.</p>\n\t<p *ngIf=\"showMap\">Select <i class=\"material-icons\">check_box_outline_blank</i> a Performance then click on its parts, or a click on and select <i class=\"material-icons\">check_box_outline_blank</i> a Part then play <i class=\"material-icons\">play_circle_outline</i> the different versions available.</p>\n\t<div class=\"row\">\n\t<div [ngClass]=\"{'col-12': !popout, 'col-lg-4': popout, 'col-md-6': popout}\">\n\t<h2>Performances</h2>\n\t\t<div class=\"row\">\n\t\t<div [ngClass]=\"{'col-sm-6':!popout, 'col-md-4':!popout, 'col-12':popout, performance:true}\" >\n\t\t\t<a (click)=\"clickAllPerformancesCheckbox($event)\" class=\"pointer\">\n\t\t\t\t<i class=\"material-icons\">{{allPerformancesSelected ? 'check_box' : 'check_box_outline_blank'}}</i>\n\t\t\t</a>\n\t\t\tAll Performances\n\t\t</div>\n\t\t<div [ngClass]=\"{'col-sm-6':!popout, 'col-md-4':!popout, 'col-12':popout, performance:true}\" *ngFor=\"let perf of performances\" [ngClass]=\"{'highlighted': perf.highlighted}\"\n\t\t\t(click)=\"clickPerformance(perf)\">\n\t\t\t<a (click)=\"clickPerformanceCheckbox($event,perf)\" class=\"pointer\">\n\t\t\t\t<i class=\"material-icons\">{{perf.selected ? 'check_box' : 'check_box_outline_blank'}}</i>\n\t\t\t</a>\n\t\t\t<a (click)=\"clickPerformancePlay($event,perf)\" class=\"pointer\">\n\t\t\t\t<span *ngIf=\"perf.active && perf.available\"><i class=\"material-icons\">play_circle_filled</i></span>\n\t\t\t\t<span *ngIf=\"!perf.active && perf.available\"><i class=\"material-icons\">play_circle_outline</i></span>\n\t\t\t\t<span *ngIf=\"!perf.available\"><i class=\"material-icons\">&nbsp;</i></span>\n\t\t\t</a>\n\t\t\t{{perf.label}}<!-- (@ {{perf.startTime}}) -->\n\t\t\t<span class=\"performer\" *ngFor=\"let performer of perf.performers\">{{performer.label}} </span>\n\t\t</div>\n\t\t</div>\n\t</div>\n\t<div [ngClass]=\"{'col-12': !popout, 'col-lg-4': popout, 'col-md-6': popout}\">\n\t<!-- <p *ngIf=\"selectedPerformance\"><em>{{selectedPerformance.label}}</em>: {{selectedPerformance.description}}</p>  -->\n\t<h2>Parts (sections) \n\t<div class=\"btn-group\">\n\t\t<button class=\"btn btn-secondary\" [ngClass]=\"{'active':!showMap}\" (click)=\"setShowMap(false)\">List</button>\n\t\t<button class=\"btn btn-secondary\" [ngClass]=\"{'active':showMap}\" (click)=\"setShowMap(true)\">Map</button>\n\t</div>\n\t</h2>\n\t<div class=\"row\" *ngIf=\"!showMap\">\n\t\t<div [ngClass]=\"{'col-sm-6':!popout, 'col-md-4':!popout, part:true, 'col-lg-12':popout, 'col-md-12':popout}\" *ngFor=\"let part of parts\" [ngClass]=\"{'highlighted': part.highlighted}\"\n\t\t\t(click)=\"clickPart(part)\">\n\t\t\t<a (click)=\"clickPartCheckbox($event,part)\" class=\"pointer\">\n\t\t\t\t<i class=\"material-icons\">{{part.selected ? 'check_box' : 'check_box_outline_blank'}}</i>\n\t\t\t</a>\n\t\t\t<a (click)=\"clickPartPlay($event,part)\" class=\"pointer\">\n\t\t\t\t<span *ngIf=\"part.active && part.available\"><i class=\"material-icons\">play_circle_filled</i></span>\n\t\t\t\t<span *ngIf=\"!part.active && part.available\"><i class=\"material-icons\">play_circle_outline</i></span>\n\t\t\t\t<span *ngIf=\"!part.available\"><i class=\"material-icons\">&nbsp;</i></span>\n\t\t\t</a>\n\t\t\t{{part.label}}\n\t\t</div>\n\t\t<div [ngClass]=\"{'col-sm-12':!popout, 'col-md-8':!popout, 'col-lg-6':!popout, 'col-12':popout}\">\n\t\t\t<p *ngIf=\"selectedPart\"><em>{{selectedPart.label}}</em>: {{selectedPart.description}}</p>\n\t\t\t<p *ngIf=\"!selectedPart && currentlyPlaying\"><em>{{currentlyPlaying.part.label}}</em>: {{currentlyPlaying.part.description}}</p>\n\t\t</div>\n\t</div>\n\t<div class=\"row\">\n\t\t<div *ngIf=\"showMap\" [ngClass]=\"{'col-sm-12':!popout, 'col-md-8':!popout, 'col-lg-6':!popout, 'col-12':popout}\">\n\t\t\t<parts-map [parts]=\"parts\" [work]=\"work\" [heatmap]=\"allPerformancesSelected\" (select)=\"clickMapPart($event)\"></parts-map>\n\t\t</div>\n\t\t<div [ngClass]=\"{'col-sm-12':!popout, 'col-md-8':!popout, 'col-lg-6':!popout, 'col-12':popout}\">\n\t\t<div *ngIf=\"showMap && selectedPart\">\n\t\t\t<div class=\"part\" [ngClass]=\"{'highlighted': selectedPart.highlighted}\"\n\t\t\t(click)=\"clickPart(selectedPart)\">\n\t\t\t\t<a (click)=\"clickPartCheckbox($event,selectedPart)\" class=\"pointer\">\n\t\t\t\t\t<i class=\"material-icons\">{{selectedPart.selected ? 'check_box' : 'check_box_outline_blank'}}</i>\n\t\t\t\t</a>\n\t\t\t\t<a (click)=\"clickPartPlay($event,selectedPart)\" class=\"pointer\">\n\t\t\t\t\t<span *ngIf=\"selectedPart.active && selectedPart.available\"><i class=\"material-icons\">play_circle_filled</i></span>\n\t\t\t\t\t<span *ngIf=\"!selectedPart.active && selectedPart.available\"><i class=\"material-icons\">play_circle_outline</i></span>\n\t\t\t\t\t<span *ngIf=\"!selectedPart.available\"><i class=\"material-icons\">&nbsp;</i></span>\n\t\t\t\t</a>\n\t\t\t\t{{selectedPart.label}}\n\t\t\t</div>\n\t\t\t<p ><em>{{selectedPart.label}}</em>: {{selectedPart.description}}</p>\n\t\t</div>\n\t\t<div *ngIf=\"showMap && currentlyPlaying && !selectedPart\">\n\t\t\t<div class=\"part\" [ngClass]=\"{'highlighted': currentlyPlaying.part.highlighted}\"\n\t\t\t(click)=\"clickPart(currentlyPlaying.part)\">\n\t\t\t\t<a (click)=\"clickPartCheckbox($event,currentlyPlaying.part)\" class=\"pointer\">\n\t\t\t\t\t<i class=\"material-icons\">{{currentlyPlaying.part.selected ? 'check_box' : 'check_box_outline_blank'}}</i>\n\t\t\t\t</a>\n\t\t\t\t<a (click)=\"clickPartPlay($event,currentlyPlaying.part)\" class=\"pointer\">\n\t\t\t\t\t<span *ngIf=\"currentlyPlaying.part.active && currentlyPlaying.part.available\"><i class=\"material-icons\">play_circle_filled</i></span>\n\t\t\t\t\t<span *ngIf=\"!currentlyPlaying.part.active && currentlyPlaying.part.available\"><i class=\"material-icons\">play_circle_outline</i></span>\n\t\t\t\t\t<span *ngIf=\"!currentlyPlaying.part.available\"><i class=\"material-icons\">&nbsp;</i></span>\n\t\t\t\t</a>\n\t\t\t\t{{currentlyPlaying.part.label}}\n\t\t\t</div>\n\t\t\t<p ><em>{{currentlyPlaying.part.label}}</em>: {{currentlyPlaying.part.description}}</p>\n\t\t</div>\n\t\t<div *ngFor=\"let rec of recordings\">\n\t\t\t<audio *ngIf=\"!rec.isVideo && !popout\" id=\"{{rec.id}}\" (canplay)=\"audioCanplay($event,rec)\" (seeked)=\"audioSeeked($event,rec)\"\n\t\t\t(timeupdate)=\"audioTimeupdate($event,rec)\" (ended)=\"audioEnded($event,rec)\">\n\t\t\t\t<source src=\"{{rec.urls[0]}}\" type=\"audio/mpeg\">\n\t\t\t\tYour browser does not support audio\n\t\t\t</audio>\n\t\t\t<video *ngIf=\"rec.isVideo && !popout\" id=\"{{rec.id}}\" (canplay)=\"audioCanplay($event,rec)\" (seeked)=\"audioSeeked($event,rec)\"\n\t\t\t(timeupdate)=\"audioTimeupdate($event,rec)\" (ended)=\"audioEnded($event,rec)\"\n\t\t\t[ngClass]=\"{hidden:!rec.visible}\">\n\t\t\t\t<source src=\"{{rec.urls[0]}}\" type=\"video/mp4\">\n\t\t\t\tYour browser does not support video\n\t\t\t</video>\n\t\t</div>\n \t\t</div>\n\t</div>\n\t</div>\n\t<div [ngClass]=\"{'col-12': !popout, 'col-lg-4': popout, 'col-md-12': popout}\">\n \t<h2>Playing\n\t\t<div class=\"btn-group\" *ngIf=\"!popout\">\n\t\t\t<button class=\"btn btn-secondary\" [ngClass]=\"{'active':!showVideo}\" (click)=\"setShowVideo(false)\">Audio</button>\n\t\t\t<button class=\"btn btn-secondary\" [ngClass]=\"{'active':showVideo}\" (click)=\"setShowVideo(true)\">Video</button>\n\t\t</div>\n\t</h2>\n\n\t<div class=\"row\" *ngIf=\"!!currentlyPlaying\">\n\t\t<div class=\"col-12\" *ngIf=\"!!currentlyPlaying.clip && !!currentlyPlaying.clip.recording\">\n\t\t\t<span class=\"time\">{{currentlyPlaying.currentTimeText}}</span>\n\t\t\t<a (click)=\"previous()\"><i class=\"material-icons\">skip_previous</i></a>\n\t\t\t<a (click)=\"back()\"><i class=\"material-icons\">fast_rewind</i></a>\n\t\t\t<i *ngIf=\"!(!!currentlyPlaying && !currentlyPlaying.clip.recording.shouldplay)\" class=\"material-icons\">play_circle_filled</i>\n\t\t\t<a (click)=\"play()\" *ngIf=\"!!currentlyPlaying && !currentlyPlaying.clip.recording.shouldplay\">\n\t\t\t\t<i class=\"material-icons\">play_circle_outline</i>\n\t\t\t</a>\n\t\t\t<a (click)=\"pause()\"><i class=\"material-icons\">pause_circle_outline</i></a>\n\t\t\t<a (click)=\"forward()\"><i class=\"material-icons\">fast_forward</i></a>\n\t\t\t<a (click)=\"next()\"><i class=\"material-icons\">skip_next</i></a>\n\t\t</div>\n\t\t<div class=\"col-12\">\n\t\t\t<table>\n\t\t\t\t<tbody>\n\t\t\t\t\t<tr *ngFor=\"let subevent of currentlyPlaying.subevents\">\n\t\t\t\t\t\t<td>\n\t\t\t\t\t\t\t<a (click)=\"playSubevent(subevent)\">\n\t\t\t\t\t\t\t\t<span *ngFor=\"let i of countdownLevels\" [ngClass]=\"{countdown:true, active:subevent.countdown==i, inactive: subevent.countdown!=i}\">&nbsp;</span>\n\t\t\t\t\t\t\t\t<span class=\"time\" [ngClass]=\"{highlight:subevent.highlight}\">{{subevent.startTimeText}}</span>\n\t\t\t\t\t\t\t</a>\n\t\t\t\t\t\t</td>\n\t\t\t\t\t\t<td>{{subevent.description}}</td>\n\t\t\t\t\t</tr>\n\t\t\t\t</tbody>\n\t\t\t</table>\n\t\t</div>\n\t\t<div class=\"col-12\">\n\t\t\t<p *ngIf=\"!currentlyPlaying.clip || !currentlyPlaying.clip.recording\">Sorry, the recording for this performance is not yet available</p>\n\t\t\t<em>{{currentlyPlaying.performance.label}}</em>: {{currentlyPlaying.performance.description}}<br>\n\t\t\t<p>Performed by <span class=\"performer\" *ngFor=\"let performer of currentlyPlaying.performance.performers\">{{performer.label}} </span></p>\n\t\t\t<em>{{currentlyPlaying.part.label}}</em>: {{currentlyPlaying.part.description}}\n\t\t</div>\n\t</div>\n\t<!-- <ul>\n\t\t<li *ngFor=\"let pp of partPerformances\">{{pp.performance.id}} / {{pp.part.id}}</li>\n\t</ul> -->\n\t</div>\n</div>\n"
+module.exports = "<div class=\"container\" [ngClass]=\"{containerShiftLeft:showApp}\" *ngIf=\"work\"><h1>{{work.label}}</h1>\n<!-- <i class=\"material-icons\">face</i> -->\n\t<p><a [routerLink]=\"['/work', work.id]\">More about {{work.label}}...</a></p>\n\t<p *ngIf=\"!showMap\">Select <i class=\"material-icons\">check_box_outline_blank</i> a Performance then play <i class=\"material-icons\">play_circle_outline</i> its parts, or select <i class=\"material-icons\">check_box_outline_blank</i> a Part then play <i class=\"material-icons\">play_circle_outline</i> the different versions available.</p>\n\t<p *ngIf=\"showMap\">Select <i class=\"material-icons\">check_box_outline_blank</i> a Performance then click on its parts, or a click on and select <i class=\"material-icons\">check_box_outline_blank</i> a Part then play <i class=\"material-icons\">play_circle_outline</i> the different versions available.</p>\n\t<p  class=\"hideIfNotWide\">\n\t\t<a (click)=\"clickShowApp($event)\" class=\"pointer\">\n\t\t\t<i class=\"material-icons\">{{showApp ? 'check_box' : 'check_box_outline_blank'}}</i>\n\t\t</a>\n\t\tShow mobile app\n\t</p>\n\t<div [ngClass]=\"{appframe: true, hidden: !showApp}\">\n\t\t<iframe #appframe [ngClass]=\"{appframeContent: true, hidden: !showApp}\" [src]=\"appUrl\"></iframe>\n\t</div>\n\t<div class=\"row\">\n\t<div [ngClass]=\"{'col-12': !popout, 'col-lg-4': popout, 'col-md-6': popout}\">\n\t<h2>Performances and Playlists</h2>\n\t\t<div class=\"row\">\n\t\t<div [ngClass]=\"{'col-sm-6':!popout, 'col-md-4':!popout, 'col-12':popout, performance:true}\" >\n\t\t\t<a (click)=\"clickAllPerformancesCheckbox($event)\" class=\"pointer\">\n\t\t\t\t<i class=\"material-icons\">{{allPerformancesSelected ? 'check_box' : 'check_box_outline_blank'}}</i>\n\t\t\t</a>\n\t\t\tAll Performances\n\t\t</div>\n\t\t<div [ngClass]=\"{'col-sm-6':!popout, 'col-md-4':!popout, 'col-12':popout, performance:true}\" *ngFor=\"let perf of performances\" [ngClass]=\"{'highlighted': perf.highlighted}\"\n\t\t\t(click)=\"clickPerformance(perf)\" (dragover)=\"dragoverPerformance($event,perf)\" (drop)=\"dropOnPerformance($event,perf)\">\n\t\t\t<div class=\"playlistFeedback\">\n\t\t\t\t<div *ngIf=\"perf.isPlaylist && perf.playlistFeedback\" class=\"playlistFeedback playlistFeedbackText alert alert-success\"\n\t\t\t\t[ngClass]=\"{playlistFeedbackTextVisible : perf.playlistFeedbackVisible}\">{{perf.playlistFeedback}}</div>\n\t\t\t</div>\n\t\t\t<a (click)=\"clickPerformanceCheckbox($event,perf)\" class=\"pointer\">\n\t\t\t\t<i class=\"material-icons\">{{perf.selected ? 'check_box' : 'check_box_outline_blank'}}</i>\n\t\t\t</a>\n\t\t\t<a (click)=\"clickPerformancePlay($event,perf)\" class=\"pointer\">\n\t\t\t\t<span *ngIf=\"perf.active && perf.available\"><i class=\"material-icons\">play_circle_filled</i></span>\n\t\t\t\t<span *ngIf=\"!perf.active && perf.available\"><i class=\"material-icons\">play_circle_outline</i></span>\n\t\t\t\t<span *ngIf=\"!perf.available\"><i class=\"material-icons\">&nbsp;</i></span>\n\t\t\t</a>\n\t\t\t{{perf.label}}<!-- (@ {{perf.startTime}}) -->\n\t\t\t<span class=\"performer\" *ngFor=\"let performer of perf.performers\">{{performer.label}} </span>\n\t\t\t<a *ngIf=\"perf.isPlaylist\" (click)=\"editPlaylist($event,perf)\" class=\"pointer\">\n\t\t\t\t<i class=\"material-icons\">edit</i>\n\t\t\t</a>\n\t\t</div>\n\t\t<a (click)=\"clickPlaylistAdd($event)\" class=\"pointer\" [ngClass]=\"{'col-sm-6':!popout, 'col-md-4':!popout, 'col-12':popout, performance:true}\" >\n\t\t\t<i class=\"material-icons\">playlist_add</i>\n\t\t\tNew Playlist\n\t\t</a>\n\t\t</div>\n\t</div>\n\t<div [ngClass]=\"{'col-12': !popout, 'col-lg-4': popout, 'col-md-6': popout}\">\n\t<!-- <p *ngIf=\"selectedPerformance\"><em>{{selectedPerformance.label}}</em>: {{selectedPerformance.description}}</p>  -->\n\t<h2>Parts (sections) \n\t<div class=\"btn-group\">\n\t\t<button class=\"btn btn-secondary\" [ngClass]=\"{'active':!showMap}\" (click)=\"setShowMap(false)\">List</button>\n\t\t<button class=\"btn btn-secondary\" [ngClass]=\"{'active':showMap}\" (click)=\"setShowMap(true)\">Map</button>\n\t</div>\n\t</h2>\n\t<div class=\"row\" *ngIf=\"!showMap && (!selectedPerformance || !selectedPerformance.isPlaylist)\">\n\t\t<div [ngClass]=\"{'col-sm-6':!popout, 'col-md-4':!popout, part:true, 'col-lg-12':popout, 'col-md-12':popout}\" *ngFor=\"let part of parts\" [ngClass]=\"{'highlighted': part.highlighted}\"\n\t\t\t(click)=\"clickPart(part)\">\n\t\t\t<a (click)=\"clickPartCheckbox($event,part)\" class=\"pointer\">\n\t\t\t\t<i class=\"material-icons\">{{part.selected ? 'check_box' : 'check_box_outline_blank'}}</i>\n\t\t\t</a>\n\t\t\t<i *ngIf=\"part.available\" class=\"material-icons\" draggable=\"true\" (dragstart)=\"dragPart($event,part)\">drag_indicator</i>\n\t\t\t<a (click)=\"clickPartPlay($event,part)\" class=\"pointer\">\n\t\t\t\t<span *ngIf=\"part.active && part.available\"><i class=\"material-icons\">play_circle_filled</i></span>\n\t\t\t\t<span *ngIf=\"!part.active && part.available\"><i class=\"material-icons\">play_circle_outline</i></span>\n\t\t\t\t<span *ngIf=\"!part.available\"><i class=\"material-icons\">&nbsp;</i></span>\n\t\t\t</a>\n\t\t\t{{part.label}}\n\t\t</div>\n\t\t<div [ngClass]=\"{'col-sm-12':!popout, 'col-md-12':!popout, 'col-lg-12':!popout, 'col-12':popout}\">\n\t\t\t<p *ngIf=\"selectedPart\"><em>{{selectedPart.label}}</em>: {{selectedPart.description}}</p>\n\t\t\t<p *ngIf=\"!selectedPart && currentlyPlaying\"><em>{{currentlyPlaying.part.label}}</em>: {{currentlyPlaying.part.description}}</p>\n\t\t</div>\n\t</div>\n\t<div class=\"row\" *ngIf=\"!showMap && selectedPerformance && selectedPerformance.isPlaylist\">\n\t\t<div [ngClass]=\"{'col-sm-6':!popout, 'col-md-4':!popout, part:true, 'col-lg-12':popout, 'col-md-12':popout}\" *ngFor=\"let clip of playlistClips\"\n\t\t\t (dragover)=\"dragoverClip($event,clip)\" (drop)=\"dropOnClip($event,clip)\">\n\t\t\t<i class=\"material-icons\" draggable=\"true\" (dragstart)=\"dragClip($event,clip)\">drag_indicator</i>\n\t\t\t<a (click)=\"clickClipPlay($event,clip)\" class=\"pointer\">\n\t\t\t\t<span *ngIf=\"clip.active\"><i class=\"material-icons\">play_circle_filled</i></span>\n\t\t\t\t<span *ngIf=\"!clip.active\"><i class=\"material-icons\">play_circle_outline</i></span>\n\t\t\t</a>\n\t\t\t{{clip.label}}\n\t\t\t<i class=\"material-icons\" *ngIf=\"clip.hasStartOffset\">navigate_before</i>\n\t\t\t<i class=\"material-icons\" *ngIf=\"clip.hasEndOffset\">navigate_next</i>\n\t\t\t<a (click)=\"editPlaylistItem($event,clip)\" class=\"pointer\">\n\t\t\t\t<i class=\"material-icons\">edit</i>\n\t\t\t</a>\n\t\t</div>\n\t\t<div [ngClass]=\"{'col-sm-12':!popout, 'col-md-12':!popout, 'col-lg-12':!popout, 'col-12':popout}\">\n\t\t\t<p *ngIf=\"selectedPart\"><em>{{selectedPart.label}}</em>: {{selectedPart.description}}</p>\n\t\t\t<p *ngIf=\"!selectedPart && currentlyPlaying\"><em>{{currentlyPlaying.part.label}}</em>: {{currentlyPlaying.part.description}}</p>\n\t\t</div>\n\t</div>\n\t<div class=\"row\">\n\t\t<div *ngIf=\"showMap\" [ngClass]=\"{'col-sm-12':!popout, 'col-md-8':!popout, 'col-lg-6':!popout, 'col-xl-5':!popout, 'col-12':popout}\">\n\t\t\t<parts-map [parts]=\"parts\" [work]=\"work\" [heatmap]=\"allPerformancesSelected\" (select)=\"clickMapPart($event)\"></parts-map>\n\t\t</div>\n\t\t<div [ngClass]=\"{'col-sm-12':!popout, 'col-md-12':!popout, 'col-lg-6':!popout, 'col-xl-7':!popout, 'col-12':popout}\">\n\t\t<div *ngIf=\"showMap && selectedPart\">\n\t\t\t<div class=\"part\" [ngClass]=\"{'highlighted': selectedPart.highlighted}\"\n\t\t\t(click)=\"clickPart(selectedPart)\">\n\t\t\t\t<a (click)=\"clickPartCheckbox($event,selectedPart)\" class=\"pointer\">\n\t\t\t\t\t<i class=\"material-icons\">{{selectedPart.selected ? 'check_box' : 'check_box_outline_blank'}}</i>\n\t\t\t\t</a>\n\t\t\t\t<i *ngIf=\"currentlyPlaying\" class=\"material-icons\" draggable=\"true\" (dragstart)=\"dragPartPerformance($event,currentlyPlaying)\">drag_indicator</i>\n\t\t\t\t<a (click)=\"clickPartPlay($event,selectedPart)\" class=\"pointer\">\n\t\t\t\t\t<span *ngIf=\"selectedPart.active && selectedPart.available\"><i class=\"material-icons\">play_circle_filled</i></span>\n\t\t\t\t\t<span *ngIf=\"!selectedPart.active && selectedPart.available\"><i class=\"material-icons\">play_circle_outline</i></span>\n\t\t\t\t\t<span *ngIf=\"!selectedPart.available\"><i class=\"material-icons\">&nbsp;</i></span>\n\t\t\t\t</a>\n\t\t\t\t{{selectedPart.label}}\n\t\t\t</div>\n\t\t\t<p ><em>{{selectedPart.label}}</em>: {{selectedPart.description}}</p>\n\t\t</div>\n\t\t<div *ngIf=\"showMap && currentlyPlaying && !selectedPart\">\n\t\t\t<div class=\"part\" [ngClass]=\"{'highlighted': currentlyPlaying.part.highlighted}\"\n\t\t\t(click)=\"clickPart(currentlyPlaying.part)\">\n\t\t\t\t<a (click)=\"clickPartCheckbox($event,currentlyPlaying.part)\" class=\"pointer\">\n\t\t\t\t\t<i class=\"material-icons\">{{currentlyPlaying.part.selected ? 'check_box' : 'check_box_outline_blank'}}</i>\n\t\t\t\t</a>\n\t\t\t\t<i class=\"material-icons\" draggable=\"true\" (dragstart)=\"dragPartPerformance($event,currentlyPlaying)\">drag_indicator</i>\n\t\t\t\t<a (click)=\"clickPartPlay($event,currentlyPlaying.part)\" class=\"pointer\">\n\t\t\t\t\t<span *ngIf=\"currentlyPlaying.part.active && currentlyPlaying.part.available\"><i class=\"material-icons\">play_circle_filled</i></span>\n\t\t\t\t\t<span *ngIf=\"!currentlyPlaying.part.active && currentlyPlaying.part.available\"><i class=\"material-icons\">play_circle_outline</i></span>\n\t\t\t\t\t<span *ngIf=\"!currentlyPlaying.part.available\"><i class=\"material-icons\">&nbsp;</i></span>\n\t\t\t\t</a>\n\t\t\t\t{{currentlyPlaying.part.label}}\n\t\t\t</div>\n\t\t\t<p ><em>{{currentlyPlaying.part.label}}</em>: {{currentlyPlaying.part.description}}</p>\n\t\t</div>\n\t\t<div *ngFor=\"let rec of recordings\">\n\t\t\t<audio *ngIf=\"!rec.isVideo && !popout\" id=\"{{rec.id}}\" (canplay)=\"audioCanplay($event,rec)\" (seeked)=\"audioSeeked($event,rec)\"\n\t\t\t(timeupdate)=\"audioTimeupdate($event,rec)\" (ended)=\"audioEnded($event,rec)\">\n\t\t\t\t<source src=\"{{rec.urls[0]}}\" type=\"audio/mpeg\">\n\t\t\t\tYour browser does not support audio\n\t\t\t</audio>\n\t\t\t<video *ngIf=\"rec.isVideo && !popout\" id=\"{{rec.id}}\" (canplay)=\"audioCanplay($event,rec)\" (seeked)=\"audioSeeked($event,rec)\"\n\t\t\t(timeupdate)=\"audioTimeupdate($event,rec)\" (ended)=\"audioEnded($event,rec)\"\n\t\t\t[ngClass]=\"{hidden:!rec.visible}\">\n\t\t\t\t<source src=\"{{rec.urls[0]}}\" type=\"video/mp4\">\n\t\t\t\tYour browser does not support video\n\t\t\t</video>\n\t\t</div>\n \t\t</div>\n\t</div>\n\t</div>\n\t<div [ngClass]=\"{'col-12': !popout, 'col-lg-4': popout, 'col-md-12': popout}\">\n \t<h2>Playing\n\t\t<div class=\"btn-group\" *ngIf=\"!popout\">\n\t\t\t<button class=\"btn btn-secondary\" [ngClass]=\"{'active':!showVideo}\" (click)=\"setShowVideo(false)\">Audio</button>\n\t\t\t<button class=\"btn btn-secondary\" [ngClass]=\"{'active':showVideo}\" (click)=\"setShowVideo(true)\">Video</button>\n\t\t</div>\n\t</h2>\n\n\t<div class=\"row\" *ngIf=\"!!currentlyPlaying\">\n\t\t<div class=\"col-12\" *ngIf=\"!!currentlyPlaying.clip && !!currentlyPlaying.clip.recording\">\n\t\t\t<span class=\"time\">{{currentlyPlaying.currentTimeText}}</span>\n\t\t\t<a (click)=\"previous()\"><i class=\"material-icons\">skip_previous</i></a>\n\t\t\t<a (click)=\"back()\"><i class=\"material-icons\">fast_rewind</i></a>\n\t\t\t<i *ngIf=\"!(!!currentlyPlaying && !currentlyPlaying.clip.recording.shouldplay)\" class=\"material-icons\">play_circle_filled</i>\n\t\t\t<a (click)=\"play()\" *ngIf=\"!!currentlyPlaying && !currentlyPlaying.clip.recording.shouldplay\">\n\t\t\t\t<i class=\"material-icons\">play_circle_outline</i>\n\t\t\t</a>\n\t\t\t<a (click)=\"pause()\"><i class=\"material-icons\">pause_circle_outline</i></a>\n\t\t\t<a (click)=\"forward()\"><i class=\"material-icons\">fast_forward</i></a>\n\t\t\t<a (click)=\"next()\"><i class=\"material-icons\">skip_next</i></a>\n\t\t</div>\n\t\t<div class=\"col-12\">\n\t\t\t<table>\n\t\t\t\t<tbody>\n\t\t\t\t\t<tr *ngFor=\"let subevent of currentlyPlaying.subevents\">\n\t\t\t\t\t\t<td>\n\t\t\t\t\t\t\t<a (click)=\"playSubevent(subevent)\">\n\t\t\t\t\t\t\t\t<span *ngFor=\"let i of countdownLevels\" [ngClass]=\"{countdown:true, active:subevent.countdown==i, inactive: subevent.countdown!=i}\">&nbsp;</span>\n\t\t\t\t\t\t\t\t<span class=\"time\" [ngClass]=\"{highlight:subevent.highlight}\">{{subevent.startTimeText}}</span>\n\t\t\t\t\t\t\t</a>\n\t\t\t\t\t\t</td>\n\t\t\t\t\t\t<td>{{subevent.description}}</td>\n\t\t\t\t\t</tr>\n\t\t\t\t</tbody>\n\t\t\t</table>\n\t\t</div>\n\t\t<div class=\"col-12\">\n\t\t\t<p *ngIf=\"!currentlyPlaying.clip || !currentlyPlaying.clip.recording\">Sorry, the recording for this performance is not yet available</p>\n\t\t\t<p>\n\t\t\t\t<span *ngIf=\"!currentlyPlaying.isClip\"><em>{{currentlyPlaying.performance.label}}</em>: {{currentlyPlaying.performance.description}}<br></span>\n\t\t\t\t<span *ngIf=\"currentlyPlaying.isClip\"><em>{{currentlyPlaying.performance.label}}</em>: {{currentlyPlaying.label}}<br>\n\t\t\t\tFrom <em>{{currentlyPlaying.realPerformance.label}}</em><br></span>\n\t\t\t\tPerformed by <span class=\"performer\" *ngFor=\"let performer of (currentlyPlaying.isClip ? currentlyPlaying.realPerformance : currentlyPlaying.performance).performers\">{{performer.label}} </span>\n\t\t\t</p><p><em>{{currentlyPlaying.part.label}}</em>: {{currentlyPlaying.part.description}}</p>\n\t\t</div>\n\t</div>\n\t<!-- <ul>\n\t\t<li *ngFor=\"let pp of partPerformances\">{{pp.performance.id}} / {{pp.part.id}}</li>\n\t</ul> -->\n\t</div>\n\t<div class=\"blankAtBottom\"></div>\n\t<div *ngIf=\"editingPlaylistInfo\">\n      <playlist-form (save)=\"saveEditingPlaylist($event)\" (cancel)=\"cancelEditingPlaylist()\" [disabled]=\"false\"\n       [playlist]=\"editingPlaylistInfo\" (dodelete)=\"deleteEditingPlaylist()\" (doexport)=\"exportEditingPlaylist($event)\"></playlist-form>\n    </div>\n\t<div *ngIf=\"editingPlaylistItem\">\n      <playlist-item-form (save)=\"saveEditingPlaylistItem($event)\" (cancel)=\"cancelEditingPlaylistItem()\" [disabled]=\"false\"\n       [item]=\"editingPlaylistItem\" (dodelete)=\"deleteEditingPlaylistItem()\"></playlist-item-form>\n    </div>\n\t\n</div>\n"
 
 /***/ }),
 
@@ -773,10 +1143,14 @@ module.exports = "<div class=\"container\" *ngIf=\"work\"><h1>{{work.label}}</h1
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WorkExplorerComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_add_operator_switchMap__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/switchMap.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common__ = __webpack_require__("../../../common/esm5/common.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__entity__ = __webpack_require__("../../../../../src/app/entity.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__records_service__ = __webpack_require__("../../../../../src/app/records.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__ = __webpack_require__("../../../platform-browser/esm5/platform-browser.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_common__ = __webpack_require__("../../../common/esm5/common.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_file_saver__ = __webpack_require__("../../../../file-saver/src/FileSaver.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_file_saver___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_file_saver__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__entity__ = __webpack_require__("../../../../../src/app/entity.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__records_service__ = __webpack_require__("../../../../../src/app/records.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__linkapps_service__ = __webpack_require__("../../../../../src/app/linkapps.service.ts");
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -803,6 +1177,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
+
 var ScreenEntity = (function (_super) {
     __extends(ScreenEntity, _super);
     function ScreenEntity(fields) {
@@ -814,7 +1191,7 @@ var ScreenEntity = (function (_super) {
         return _this;
     }
     return ScreenEntity;
-}(__WEBPACK_IMPORTED_MODULE_4__entity__["a" /* Entity */]));
+}(__WEBPACK_IMPORTED_MODULE_6__entity__["a" /* Entity */]));
 var Recording = (function (_super) {
     __extends(Recording, _super);
     function Recording(fields, performance) {
@@ -845,17 +1222,48 @@ var Recording = (function (_super) {
             console.log('found video recording ' + this.id + ' url ' + urls);
     };
     return Recording;
-}(__WEBPACK_IMPORTED_MODULE_4__entity__["a" /* Entity */]));
+}(__WEBPACK_IMPORTED_MODULE_6__entity__["a" /* Entity */]));
 var Performance = (function (_super) {
     __extends(Performance, _super);
     function Performance(fields) {
         var _this = _super.call(this, fields) || this;
+        _this.isPlaylist = false;
         _this.startTime = _this.getTime('prov:startedAtTime');
         _this.performers = [];
         return _this;
     }
     return Performance;
 }(ScreenEntity));
+var Playlist = (function (_super) {
+    __extends(Playlist, _super);
+    function Playlist(name) {
+        var _this = _super.call(this, { 'rdfs:label': name }) || this;
+        _this.playlistFeedbackVisible = false;
+        _this.playlistFeedbackTimer = null;
+        _this.isPlaylist = true;
+        return _this;
+    }
+    Playlist.prototype.showFeedback = function (feedback) {
+        this.playlistFeedback = feedback;
+        this.playlistFeedbackVisible = true;
+        if (this.playlistFeedbackTimer)
+            clearTimeout(this.playlistFeedbackTimer);
+        var self = this;
+        function fn() {
+            self.playlistFeedbackTimer = null;
+            if (self.playlistFeedbackVisible) {
+                self.playlistFeedbackVisible = false;
+                self.playlistFeedbackTimer = setTimeout(fn, 1000);
+            }
+            else {
+                self.playlistFeedback = null;
+            }
+        }
+        ;
+        this.playlistFeedbackTimer = setTimeout(fn, 100);
+    };
+    return Playlist;
+}(Performance));
 var Part = (function (_super) {
     __extends(Part, _super);
     function Part(fields) {
@@ -898,13 +1306,14 @@ var SubEvent = (function (_super) {
         console.log('setAbsTime ' + time + '/' + this.startTime + '=' + delta + ', countdown=' + this.countdown + ', highlight=' + this.highlight);
     };
     return SubEvent;
-}(__WEBPACK_IMPORTED_MODULE_4__entity__["a" /* Entity */]));
+}(__WEBPACK_IMPORTED_MODULE_6__entity__["a" /* Entity */]));
 var PartPerformance = (function (_super) {
     __extends(PartPerformance, _super);
     function PartPerformance(fields, performance, part) {
         var _this = _super.call(this, fields) || this;
         _this.currentTimeText = '0:00';
         _this.subevents = [];
+        _this.isClip = false;
         if (!part)
             console.log('Error: create PP ' + _this.id + ' with null part; fields:', fields);
         _this.startTime = _this.getTime('prov:startedAtTime');
@@ -922,15 +1331,53 @@ var PartPerformance = (function (_super) {
         this.currentTimeText = minus + (minutes) + ':' + Math.floor(seconds / 10) + (seconds % 10);
     };
     return PartPerformance;
-}(__WEBPACK_IMPORTED_MODULE_4__entity__["a" /* Entity */]));
+}(__WEBPACK_IMPORTED_MODULE_6__entity__["a" /* Entity */]));
+var nextClip = 1;
+var Clip = (function (_super) {
+    __extends(Clip, _super);
+    // TODO offset/duration
+    function Clip(playlist, pp) {
+        var _this = _super.call(this, {}, playlist, pp.part) || this;
+        _this.active = false;
+        _this.hasStartOffset = false;
+        _this.hasEndOffset = false;
+        _this.id = '_clip' + (nextClip++);
+        _this.startTime = pp.startTime;
+        _this.isClip = true;
+        _this.audioClip = new AudioClip(pp.audioClip.recording, pp.audioClip.start, pp.audioClip.duration);
+        _this.clip = new AudioClip(pp.clip.recording, pp.clip.start, pp.clip.duration);
+        _this.videoClip = new AudioClip(pp.videoClip.recording, pp.videoClip.start, pp.videoClip.duration);
+        if (_this.audioClip)
+            _this.duration = _this.audioClip.duration;
+        if (_this.videoClip && (!_this.duration || _this.videoClip.duration < _this.duration))
+            _this.duration = _this.videoClip.duration;
+        _this.playlist = playlist;
+        _this.realPartPerformance = pp;
+        _this.realPerformance = pp.performance;
+        _this.subevents = pp.subevents;
+        return _this;
+    }
+    Clip.prototype.setCurrentTime = function (time) {
+        if (this.realPartPerformance) {
+            _super.prototype.setCurrentTime.call(this, time + this.startTime - this.realPartPerformance.startTime);
+        }
+        else {
+            _super.prototype.setCurrentTime.call(this, time);
+        }
+    };
+    return Clip;
+}(PartPerformance));
+var DRAG_AND_DROP_MIME_TYPE = 'application/x-archive-dd';
 var WorkExplorerComponent = (function () {
-    function WorkExplorerComponent(elRef, recordsService, route, location, renderer, ngZone) {
+    function WorkExplorerComponent(elRef, recordsService, route, location, renderer, ngZone, linkappsService, sanitizer) {
         this.elRef = elRef;
         this.recordsService = recordsService;
         this.route = route;
         this.location = location;
         this.renderer = renderer;
         this.ngZone = ngZone;
+        this.linkappsService = linkappsService;
+        this.sanitizer = sanitizer;
         this.performances = [];
         this.allPerformancesSelected = true;
         this.parts = [];
@@ -939,23 +1386,100 @@ var WorkExplorerComponent = (function () {
         this.currentlyPlaying = null;
         this.selectedPart = null;
         this.selectedPerformance = null;
+        this.playlistClips = [];
         this.showMap = false;
         this.countdownLevels = [5, 4, 3, 2, 1];
         this.showVideo = true;
+        this.showApp = false;
+        this.playlistCount = 0;
     }
     WorkExplorerComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.route.queryParams
-            .subscribe(function (params) { if (params['popout'] !== undefined) {
-            _this.popoutPlayer();
-        } });
+            .subscribe(function (params) {
+            if (params['popout'] !== undefined) {
+                _this.popoutPlayer();
+            }
+            if (params['meld'] !== undefined) {
+                _this.linkappsService.openMeld();
+            }
+        });
         this.route.params
             .switchMap(function (params) { return _this.recordsService.getWork(params['id']); })
             .subscribe(function (work) { return _this.initialiseForWork(work); });
+        this.messageSub = this.linkappsService.getEmitter().subscribe(function (ev) {
+            if ('app.start' == ev.event) {
+                console.log('got app.start...');
+                _this.updateApp();
+            }
+            else {
+                console.log('unknown linkapps event', ev);
+            }
+        });
+        this.appUrl = this.sanitizer.bypassSecurityTrustResourceUrl("http://localhost:8000/1/archive-muzivisual/?p=archive&archive=1");
     };
     WorkExplorerComponent.prototype.ngOnDestroy = function () {
         // mainly for popout
         this.stop();
+        this.messageSub.unsubscribe();
+    };
+    WorkExplorerComponent.prototype.clickShowApp = function () {
+        this.showApp = !this.showApp;
+    };
+    WorkExplorerComponent.prototype.updateApp2 = function (performance, stages) {
+        var msg = { version: 'mrl-music.archive/1.0', event: 'play.update' };
+        if (performance) {
+            // performance title
+            msg.performanceTitle = performance.label;
+            msg.performanceId = performance.getValue("coll:system_id");
+            if (performance.performers) {
+                msg.performers = [];
+                for (var pi in performance.performers) {
+                    // performer(s)
+                    var performer = performance.performers[pi];
+                    msg.performers.push(performer.label);
+                }
+            }
+            // TODO venue -> label
+            msg.venue = performance.getValue("crm:P7_took_place_at");
+            // e.g."Place/Djanogly_Recital_Hall"
+            //if (msg.venue.substring(0,6)=='Place/')
+            //  msg.venue = msg.venue.substring(6);
+            //msg.venue = msg.venue.replace('_', ' ');
+        }
+        msg.stages = stages;
+        if (performance || stages) {
+            console.log('update app', msg);
+            try {
+                this.appframe.nativeElement.contentWindow.postMessage(JSON.stringify(msg), "*");
+            }
+            catch (err) {
+                console.log('error updating app window', err);
+            }
+        }
+    };
+    WorkExplorerComponent.prototype.updateApp = function () {
+        var _this = this;
+        if (this.currentlyPlaying) {
+            // stages in this performance
+            var stages;
+            if (!this.currentlyPlaying.isClip) {
+                var parts = this.partPerformances.filter(function (pp) { return pp.performance === _this.currentlyPlaying.performance &&
+                    pp.startTime <= _this.currentlyPlaying.startTime; })
+                    .sort(function (a, b) { return a.startTime - b.startTime; }).map(function (pp) { return pp.part.getValue("coll:part_id"); });
+                stages = parts;
+            }
+            else {
+                var parts = this.partPerformances.filter(function (pp) { return pp.performance === _this.currentlyPlaying.performance &&
+                    pp.playlistOffset <= _this.currentlyPlaying.playlistOffset; })
+                    .sort(function (a, b) { return a.playlistOffset - b.playlistOffset; }).map(function (pp) { return pp.part.getValue("coll:part_id"); });
+                stages = parts;
+            }
+            this.updateApp2(this.currentlyPlaying.performance, stages);
+        }
+        else if (this.selectedPerformance) {
+            this.updateApp2(this.selectedPerformance, []);
+        }
     };
     WorkExplorerComponent.prototype.popoutPlayer = function () {
         var _this = this;
@@ -1045,6 +1569,7 @@ var WorkExplorerComponent = (function () {
             console.log('loaded work to explore');
             _this.buildAudioClips();
             _this.buildPopularity();
+            _this.updateApp();
         });
     };
     WorkExplorerComponent.prototype.goBack = function () {
@@ -1094,6 +1619,8 @@ var WorkExplorerComponent = (function () {
                     .map(function (p) { return p.startTime; }).sort().find(function () { return true; });
                 var clip = new AudioClip(rec, startTime - recStartTime, endTime ? endTime - startTime : null);
                 console.log('part ' + pp.id + ' is ' + clip.start + '+' + clip.duration);
+                if (clip.duration && (!pp.duration || clip.duration < pp.duration))
+                    pp.duration = clip.duration;
                 if (video) {
                     pp.videoClip = clip;
                     if (this_1.showVideo)
@@ -1154,6 +1681,38 @@ var WorkExplorerComponent = (function () {
     WorkExplorerComponent.prototype.clickAllPerformancesCheckbox = function (event) {
         this.clickPerformanceCheckbox(event, null);
     };
+    WorkExplorerComponent.prototype.refreshSelectedPerformance = function () {
+        var _this = this;
+        if (!this.selectedPerformance) {
+            if (!this.selectedPart) {
+                for (var pi in this.parts) {
+                    var p = this.parts[pi];
+                    p.available = false;
+                    p.active = false;
+                }
+            }
+            return;
+        }
+        for (var pi in this.parts) {
+            var p = this.parts[pi];
+            p.selected = false;
+        }
+        // clips?
+        if (this.selectedPerformance.isPlaylist) {
+            this.playlistClips = this.partPerformances.filter(function (pp) { return pp.performance === _this.selectedPerformance && pp.isClip; }).sort(function (a, b) { return a.playlistOffset - b.playlistOffset; });
+        }
+        else {
+            this.playlistClips = [];
+        }
+        // available stages in this performance
+        for (var pi in this.parts) {
+            var part = this.parts[pi];
+            part.available = !!this.partPerformances.find(function (pp) { return pp.performance === _this.selectedPerformance && pp.part === part; });
+        }
+        // TODO visible w playlist??
+        //this.checkPopoutMediaVisible();
+        this.updateApp();
+    };
     WorkExplorerComponent.prototype.clickPerformanceCheckbox = function (event, perf) {
         var _this = this;
         if (perf !== null) {
@@ -1178,6 +1737,13 @@ var WorkExplorerComponent = (function () {
         if (perf !== null && !perf.selected)
             perf.selected = true;
         this.selectedPerformance = perf;
+        // clips?
+        if (this.selectedPerformance.isPlaylist) {
+            this.playlistClips = this.partPerformances.filter(function (pp) { return pp.performance === perf && pp.isClip; }).sort(function (a, b) { return a.playlistOffset - b.playlistOffset; });
+        }
+        else {
+            this.playlistClips = [];
+        }
         // available stages in this performance
         for (var pi in this.parts) {
             var part = this.parts[pi];
@@ -1190,15 +1756,28 @@ var WorkExplorerComponent = (function () {
                 this.currentlyPlaying.part.active = true;
         }
         if (!this.currentlyPlaying) {
-            var part = this.parts.find(function (p) { return p.available; });
-            if (part) {
-                this.playInternal(perf, part);
+            if (perf.isPlaylist) {
+                var pp = this.partPerformances.filter(function (p) { return p.performance === perf && p.isClip; }).sort(function (a, b) { return a.playlistOffset - b.playlistOffset; }).find(function (p) { return true; });
+                if (pp) {
+                    this.playInternal(perf, pp.part, pp);
+                }
+                else {
+                    this.recordings.forEach(function (r) { return r.visible = r.isVideo == _this.showVideo && r.performance == perf; });
+                }
             }
             else {
-                this.recordings.forEach(function (r) { return r.visible = r.isVideo == _this.showVideo && r.performance == perf; });
+                var part_1 = this.parts.find(function (p) { return p.available; });
+                if (part_1) {
+                    this.playInternal(perf, part_1);
+                }
+                else {
+                    this.recordings.forEach(function (r) { return r.visible = r.isVideo == _this.showVideo && r.performance == perf; });
+                }
             }
         }
         this.checkPopoutMediaVisible();
+        this.updateApp();
+        this.linkappsService.meldPerformance(perf.id);
     };
     WorkExplorerComponent.prototype.clickPerformancePlay = function (event, perf) {
         event.preventDefault();
@@ -1268,6 +1847,7 @@ var WorkExplorerComponent = (function () {
             p.selected = false;
         }
         this.selectedPerformance = null;
+        this.playlistClips = [];
         this.allPerformancesSelected = false;
         if (!part.selected)
             part.selected = true;
@@ -1304,9 +1884,12 @@ var WorkExplorerComponent = (function () {
             this.playInternal(perf, part);
         }
     };
-    WorkExplorerComponent.prototype.playInternal = function (perf, part) {
+    WorkExplorerComponent.prototype.playInternal = function (perf, part, clip) {
         var _this = this;
-        console.log('play ' + perf.id + ' ' + part.id);
+        console.log('play ' + perf.id + ' ' + part.id + (clip ? ' clip at ' + clip.startTime : ''));
+        if (this.selectedPerformance !== perf)
+            this.linkappsService.meldPerformance(perf.id);
+        this.linkappsService.meldPart(part.id);
         for (var pi in this.parts) {
             var p = this.parts[pi];
             p.active = p === part && !part.selected;
@@ -1316,12 +1899,20 @@ var WorkExplorerComponent = (function () {
             p.active = p === perf && !perf.selected;
         }
         var wasPlaying = this.currentlyPlaying;
-        this.currentlyPlaying = this.partPerformances.find(function (pp) { return pp.performance === perf && pp.part === part; });
+        this.currentlyPlaying = clip ? clip : this.partPerformances.find(function (pp) { return pp.performance === perf && pp.part === part; });
         this.currentlyPlaying.subevents.map(function (ev) { return ev.clear(); });
+        for (var ppi in this.partPerformances) {
+            var pp = this.partPerformances[ppi];
+            if (pp.isClip) {
+                var clip_1 = pp;
+                clip_1.active = clip_1 === this.currentlyPlaying;
+            }
+        }
         //console.log('elRef',this.elRef);
-        var rec = this.recordings.find(function (r) { return r.isVideo == _this.showVideo && r.performance === perf; });
+        var realPerf = this.currentlyPlaying.isClip ? this.currentlyPlaying.realPerformance : perf;
+        var rec = this.recordings.find(function (r) { return r.isVideo == _this.showVideo && r.performance === realPerf; });
         if (!rec) {
-            console.log('no ' + (this.showVideo ? 'video' : 'audio') + ' recording for performance ' + perf.id);
+            console.log('no ' + (this.showVideo ? 'video' : 'audio') + ' recording for performance ' + realPerf.id);
         }
         this.recordings.forEach(function (r) { return r.visible = r == rec; });
         this.checkPopoutMediaVisible();
@@ -1335,7 +1926,7 @@ var WorkExplorerComponent = (function () {
                     console.log('media ' + ai + ' visible!');
                     // start time...
                     var partOffset = 0;
-                    if (!!wasPlaying && wasPlaying.part === part && wasPlaying !== this.currentlyPlaying) {
+                    if (!!wasPlaying && wasPlaying.part === part && wasPlaying !== this.currentlyPlaying && !clip) {
                         // same time in part?
                         partOffset = wasPlaying.clip.recording.lastTime + wasPlaying.clip.recording.startTime
                             - wasPlaying.startTime;
@@ -1360,6 +1951,7 @@ var WorkExplorerComponent = (function () {
                 }
             }
         }
+        this.updateApp();
     };
     WorkExplorerComponent.prototype.stop = function () {
         if (this.currentlyPlaying) {
@@ -1368,6 +1960,7 @@ var WorkExplorerComponent = (function () {
         }
         this.pause();
         this.currentlyPlaying = null;
+        this.updateApp();
     };
     WorkExplorerComponent.prototype.audioTimeupdate = function (event, rec) {
         var _this = this;
@@ -1377,10 +1970,10 @@ var WorkExplorerComponent = (function () {
             var offset = rec.lastTime + rec.startTime - this.currentlyPlaying.startTime;
             this.currentlyPlaying.setCurrentTime(offset);
             this.currentlyPlaying.subevents.map(function (ev) { return ev.setAbsTime(rec.lastTime + rec.startTime); });
-            if (this.currentlyPlaying.performance.selected) {
+            if (this.currentlyPlaying.performance.selected && !this.currentlyPlaying.isClip) {
                 // check best clip...
                 var nextPp = this.partPerformances.filter(function (pp) { return pp.performance === _this.currentlyPlaying.performance
-                    && (!pp.clip.duration || pp.startTime + pp.clip.duration - 0.1 > rec.lastTime + rec.startTime); })
+                    && (!pp.duration || pp.startTime + pp.duration - 0.1 > rec.lastTime + rec.startTime); })
                     .sort(function (a, b) { return a.startTime - b.startTime; }).find(function () { return true; });
                 if (!nextPp) {
                     console.log('no valid part to play');
@@ -1393,10 +1986,36 @@ var WorkExplorerComponent = (function () {
                     this.currentlyPlaying.part.active = true;
                     this.currentlyPlaying.setCurrentTime(rec.lastTime + rec.startTime - this.currentlyPlaying.startTime);
                     this.currentlyPlaying.subevents.map(function (ev) { return ev.setAbsTime(rec.lastTime + rec.startTime); });
+                    this.updateApp();
+                }
+            }
+            else if (this.currentlyPlaying.performance.selected && this.currentlyPlaying.isClip) {
+                // playlist
+                var playlistTime_1 = this.currentlyPlaying.playlistOffset + rec.lastTime + rec.startTime - this.currentlyPlaying.startTime;
+                console.log('playlist time now ' + playlistTime_1);
+                var nextPp = this.partPerformances.filter(function (pp) { return pp.performance === _this.currentlyPlaying.performance
+                    && (!pp.duration || pp.playlistOffset + pp.duration - 0.1 > playlistTime_1); })
+                    .sort(function (a, b) { return a.playlistOffset - b.playlistOffset; }).find(function () { return true; });
+                this.partPerformances.filter(function (pp) { return pp.performance === _this.currentlyPlaying.performance; })
+                    .forEach(function (pp) { return console.log("- clip " + pp.id + " plo " + pp.playlistOffset + " dir " + pp.duration); });
+                if (!nextPp) {
+                    console.log('no valid clip to play');
+                    this.pause();
+                    var maxTime = this.currentlyPlaying.startTime + (this.currentlyPlaying.duration ? this.currentlyPlaying.duration : 0) - rec.startTime;
+                    if (rec.lastTime > maxTime + 0.1)
+                        event.target.currentTime = maxTime;
+                }
+                else if (nextPp !== this.currentlyPlaying) {
+                    console.log('change clip to +' + nextPp.playlistOffset);
+                    this.playInternal(nextPp.performance, nextPp.part, nextPp);
+                }
+                else if (playlistTime_1 < -0.1) {
+                    console.log("skip to start from " + playlistTime_1);
+                    event.target.currentTime = nextPp.startTime - rec.startTime;
                 }
             }
             else if (this.currentlyPlaying.part.selected) {
-                if (this.currentlyPlaying.clip.duration && offset > this.currentlyPlaying.clip.duration) {
+                if (this.currentlyPlaying.duration && offset > this.currentlyPlaying.duration) {
                     // pause
                     this.pause();
                     event.target.currentTime = this.currentlyPlaying.startTime - rec.startTime;
@@ -1416,6 +2035,24 @@ var WorkExplorerComponent = (function () {
     WorkExplorerComponent.prototype.audioCanplay = function (event, rec) {
         console.log('canplay ' + rec.id);
         rec.canplay = true;
+        var duration = event.target.duration;
+        if (!rec.duration) {
+            rec.duration = duration;
+            this.partPerformances.forEach(function (pp) {
+                if (pp.audioClip && pp.audioClip.recording === rec && !pp.audioClip.duration) {
+                    pp.audioClip.duration = duration - pp.audioClip.start;
+                    if (!pp.duration || pp.duration > pp.audioClip.duration)
+                        pp.duration = pp.audioClip.duration;
+                    console.log("fix duration of audioclip " + pp.id + " " + pp.performance.id + " " + pp.part.id + " as " + pp.audioClip.duration);
+                }
+                if (pp.videoClip && pp.videoClip.recording === rec && !pp.videoClip.duration) {
+                    pp.videoClip.duration = duration - pp.videoClip.start;
+                    if (!pp.duration || pp.duration > pp.videoClip.duration)
+                        pp.duration = pp.videoClip.duration;
+                    console.log("fix duration of videoclip " + pp.id + " " + pp.performance.id + " " + pp.part.id + " as " + pp.videoClip.duration);
+                }
+            });
+        }
         // shouldn't be needed?!
         if (rec.shouldplay) {
             console.log('play ' + rec.id + ' on canplay');
@@ -1525,8 +2162,11 @@ var WorkExplorerComponent = (function () {
                 this.playInternal(options[ix].performance, options[ix].part);
             }
             else {
-                var pp = this.partPerformances.filter(function (pp) { return pp.performance === _this.currentlyPlaying.performance &&
-                    pp.startTime > _this.currentlyPlaying.startTime; }).sort(function (a, b) { return a.startTime - b.startTime; }).find(function () { return true; });
+                var pp = this.currentlyPlaying.isClip
+                    ? this.partPerformances.filter(function (pp) { return pp.performance === _this.currentlyPlaying.performance &&
+                        pp.playlistOffset > _this.currentlyPlaying.playlistOffset; }).sort(function (a, b) { return a.playlistOffset - b.playlistOffset; }).find(function () { return true; })
+                    : this.partPerformances.filter(function (pp) { return pp.performance === _this.currentlyPlaying.performance &&
+                        pp.startTime > _this.currentlyPlaying.startTime; }).sort(function (a, b) { return a.startTime - b.startTime; }).find(function () { return true; });
                 if (!!pp)
                     this.playInternal(pp.performance, pp.part);
             }
@@ -1542,8 +2182,11 @@ var WorkExplorerComponent = (function () {
                 this.playInternal(options[ix].performance, options[ix].part);
             }
             else {
-                var pp = this.partPerformances.filter(function (pp) { return pp.performance === _this.currentlyPlaying.performance &&
-                    pp.startTime < _this.currentlyPlaying.startTime; }).sort(function (a, b) { return b.startTime - a.startTime; }).find(function () { return true; });
+                var pp = this.currentlyPlaying.isClip
+                    ? this.partPerformances.filter(function (pp) { return pp.performance === _this.currentlyPlaying.performance &&
+                        pp.playlistOffset < _this.currentlyPlaying.playlistOffset; }).sort(function (a, b) { return b.playlistOffset - a.playlistOffset; }).find(function () { return true; })
+                    : this.partPerformances.filter(function (pp) { return pp.performance === _this.currentlyPlaying.performance &&
+                        pp.startTime < _this.currentlyPlaying.startTime; }).sort(function (a, b) { return b.startTime - a.startTime; }).find(function () { return true; });
                 if (!!pp)
                     this.playInternal(pp.performance, pp.part);
             }
@@ -1634,6 +2277,347 @@ var WorkExplorerComponent = (function () {
             }
         }
     };
+    WorkExplorerComponent.prototype.clickPlaylistAdd = function (ev) {
+        this.performances.push(new Playlist('Playlist ' + (++this.playlistCount)));
+    };
+    WorkExplorerComponent.prototype.dragPartPerformance = function (ev, pp) {
+        console.log('drag pp ' + pp.performance.id + ' ' + pp.part.id);
+        ev.dataTransfer.setData(DRAG_AND_DROP_MIME_TYPE, JSON.stringify({ type: 'PartPerformance', part: pp.part.id, performance: pp.performance.id }));
+    };
+    WorkExplorerComponent.prototype.dragPart = function (ev, part) {
+        var pp = this.partPerformances.find(function (pp) { return pp.part === part && pp.performance.selected; });
+        if (!pp) {
+            console.log('no part performance found');
+            return;
+        }
+        this.dragPartPerformance(ev, pp);
+    };
+    WorkExplorerComponent.prototype.dragoverPerformance = function (ev, pp) {
+        if (!pp.isPlaylist)
+            return;
+        ev.preventDefault();
+    };
+    WorkExplorerComponent.prototype.playlistAddPartPerformance = function (playlist, part, performance, title, startTime, endTime) {
+        var pp = this.partPerformances.find(function (pp) { return pp.part.id == part && pp.performance.id == performance; });
+        if (!pp) {
+            console.log('error: could not locate part performance ' + performance + ' ' + part);
+            return;
+        }
+        var clip = new Clip(playlist, pp);
+        if (title)
+            clip.label = title;
+        else {
+            clip.label = pp.part.label + ' from ' + pp.performance.label;
+            if (pp.performance.performers && pp.performance.performers.length > 0) {
+                clip.label += ' by ';
+                for (var pi = 0; pi < pp.performance.performers.length; pi++) {
+                    var p = pp.performance.performers[pi];
+                    if (pi > 0)
+                        clip.label += ', ';
+                    clip.label += p.label;
+                }
+            }
+        }
+        this.fixClipStartTimeAndDuration(clip, startTime, endTime);
+        // duration so far
+        var duration = this.partPerformances.filter(function (pp) { return pp.playlist === playlist; }).map(function (pp) { return pp.videoClip ? pp.duration : 0; }).reduce(function (a, b) { return a + b; }, 0);
+        console.log('total duration was ' + duration + ' + ' + clip.duration);
+        clip.playlistOffset = duration;
+        this.partPerformances.push(clip);
+        return clip;
+    };
+    WorkExplorerComponent.prototype.dropOnPerformance = function (ev, pp) {
+        if (!pp.isPlaylist) {
+            console.log('error: drop on non-playlist');
+            return;
+        }
+        var playlist = pp;
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData(DRAG_AND_DROP_MIME_TYPE);
+        console.log('Drop:', data);
+        if (!data)
+            return;
+        var info = JSON.parse(data);
+        if ('PartPerformance' == info.type) {
+            this.playlistAddPartPerformance(playlist, info.part, info.performance);
+            playlist.showFeedback('Added');
+        }
+        else if ('Clip' == info.type) {
+            // handle Clip drop
+            // id, part, performance
+            if (!info.id || !info.part || !info.performance) {
+                console.log('error: ill-formed Clip dropped', info);
+                return;
+            }
+            var clip = this.playlistClips.find(function (c) { return c.id == info.id; });
+            if (!clip) {
+                console.log("error, could not find dropped clip " + info.id);
+                return;
+            }
+            var newclip = this.playlistAddPartPerformance(playlist, info.part, info.performance, info.title, info.startTime, info.endTime);
+            playlist.showFeedback('Added');
+        }
+        if (this.selectedPerformance === pp)
+            this.refreshSelectedPerformance();
+    };
+    WorkExplorerComponent.prototype.clickClipPlay = function (ev, clip) {
+        this.playInternal(clip.playlist, clip.part, clip);
+    };
+    WorkExplorerComponent.prototype.dragClip = function (ev, clip) {
+        // TODO playlist ID?
+        ev.dataTransfer.setData(DRAG_AND_DROP_MIME_TYPE, JSON.stringify({
+            type: 'Clip', id: clip.id, part: clip.part.id, performance: clip.realPerformance.id, title: clip.label,
+            startTime: Math.abs(clip.startTime - clip.realPartPerformance.startTime) > 0.01 ? clip.startTime - clip.realPartPerformance.startTime : null,
+            endTime: Math.abs(clip.startTime + clip.duration - (clip.realPartPerformance.startTime + clip.realPartPerformance.duration)) > 0.01 ?
+                clip.startTime + clip.duration - clip.realPartPerformance.startTime : null
+        }));
+    };
+    WorkExplorerComponent.prototype.dragoverClip = function (ev, clip) {
+        ev.preventDefault();
+    };
+    WorkExplorerComponent.prototype.dropOnClip = function (ev, clip) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData(DRAG_AND_DROP_MIME_TYPE);
+        console.log('Drop:', data);
+        if (!data)
+            return;
+        var info = JSON.parse(data);
+        if ('PartPerformance' == info.type) {
+            //this.playlistAddPartPerformance(playlist, info.part, info.performance);
+            // shouldn't happen!
+            console.log('error, PartPerformance drop on Clip');
+            return;
+        }
+        else if ('Clip' == info.type) {
+            // handle Clip drop
+            // id, part, performance
+            if (!info.id || !info.part || !info.performance) {
+                console.log('error: ill-formed Clip dropped', info);
+                return;
+            }
+            // should be re-ordering with current playlist
+            var clipIds = this.playlistClips.map(function (c) { return c.id; });
+            var targetIx = clipIds.indexOf(clip.id);
+            if (targetIx < 0) {
+                console.log("error: target clip " + clip.id + " not found in current list");
+                return;
+            }
+            var fromIx = clipIds.indexOf(info.id);
+            if (fromIx < 0) {
+                console.log("error: dropped clip " + info.id + " not found in current list");
+                return;
+            }
+            console.log("move clip from " + fromIx + " to " + targetIx);
+            if (fromIx == targetIx)
+                return;
+            var fromClip = this.playlistClips[fromIx];
+            this.playlistClips.splice(fromIx, 1);
+            if (targetIx >= fromIx)
+                targetIx--;
+            this.playlistClips.splice(targetIx, 0, fromClip);
+            var playlistOffset = 0;
+            for (var ci = 0; ci < this.playlistClips.length; ci++) {
+                var c = this.playlistClips[ci];
+                c.playlistOffset = playlistOffset;
+                if (!c.duration || c.duration <= 0) {
+                    console.log("warning, clip " + ci + " has duration " + c.duration);
+                }
+                playlistOffset += c.duration;
+            }
+            this.refreshSelectedPerformance();
+        }
+    };
+    WorkExplorerComponent.prototype.editPlaylist = function ($event, playlist) {
+        var _this = this;
+        console.log('edit playlist', playlist);
+        this.editingPlaylist = playlist;
+        this.editingPlaylistInfo = { title: playlist.label };
+        this.editingPlaylistInfo.items = [];
+        var items = this.partPerformances.filter(function (pp) { return pp.playlist === _this.editingPlaylist && pp.isClip; }).sort(function (a, b) { return a.playlistOffset - b.playlistOffset; });
+        for (var ii in items) {
+            var item = items[ii];
+            var itemInfo = { title: item.label, performance: item.realPerformance.id, part: item.part.id };
+            // copy startTime & endTime
+            if (Math.abs(item.startTime - item.realPartPerformance.startTime) > 0.01) {
+                itemInfo.startTime = item.startTime - item.realPartPerformance.startTime;
+            }
+            if (Math.abs(item.startTime + item.duration - (item.realPartPerformance.startTime + item.realPartPerformance.duration)) > 0.01) {
+                itemInfo.endTime = item.startTime + item.duration - item.realPartPerformance.startTime;
+            }
+            this.editingPlaylistInfo.items.push(itemInfo);
+        }
+    };
+    WorkExplorerComponent.prototype.deletePlaylistClips = function (playlist) {
+        for (var ii = 0; ii < this.partPerformances.length; ii++) {
+            var item = this.partPerformances[ii];
+            if (item.playlist === playlist) {
+                this.partPerformances.splice(ii, 1);
+                ii--;
+            }
+        }
+    };
+    WorkExplorerComponent.prototype.saveEditingPlaylistInternal = function (info) {
+        if (this.editingPlaylist.selected) {
+            this.stop();
+        }
+        if (this.editingPlaylist) {
+            this.editingPlaylist.label = info.title;
+            //let items = this.partPerformances.filter(pp => pp.playlist === this.editingPlaylist).sort((a,b) => a.playlistOffset - b.playlistOffset);
+            this.deletePlaylistClips(this.editingPlaylist);
+            for (var ix in info.items) {
+                var item = info.items[ix];
+                this.playlistAddPartPerformance(this.editingPlaylist, item.part, item.performance, item.title, item.startTime, item.endTime);
+            }
+            this.fixPlaylistOffsets(this.editingPlaylist);
+            if (this.editingPlaylist.selected) {
+                this.refreshSelectedPerformance();
+            }
+        }
+    };
+    WorkExplorerComponent.prototype.saveEditingPlaylist = function (info) {
+        console.log('save editing playlist', info);
+        this.saveEditingPlaylistInternal(info);
+        this.cancelEditingPlaylist();
+    };
+    WorkExplorerComponent.prototype.cancelEditingPlaylist = function () {
+        this.editingPlaylistInfo = null;
+        this.editingPlaylist = null;
+    };
+    WorkExplorerComponent.prototype.deleteEditingPlaylist = function () {
+        if (!this.editingPlaylist)
+            return;
+        this.deletePlaylistClips(this.editingPlaylist);
+        for (var pi = 0; pi < this.performances.length; pi++) {
+            var perf = this.performances[pi];
+            if (perf === this.editingPlaylist) {
+                this.performances.splice(pi, 1);
+                pi = pi - 1;
+            }
+        }
+        if (this.selectedPerformance === this.editingPlaylist) {
+            this.selectedPerformance = null;
+            this.playlistClips = [];
+        }
+        this.cancelEditingPlaylist();
+        this.refreshSelectedPerformance();
+    };
+    WorkExplorerComponent.prototype.exportEditingPlaylist = function (info) {
+        this.saveEditingPlaylistInternal(info);
+        if (this.editingPlaylist) {
+            console.log('export playlist', info);
+            var data = JSON.stringify(info, null, 4);
+            var blob = new Blob([data], {
+                type: "application/json"
+            });
+            __WEBPACK_IMPORTED_MODULE_5_file_saver__["saveAs"](blob, "playlist " + info.title + ".json");
+        }
+        this.cancelEditingPlaylist();
+    };
+    WorkExplorerComponent.prototype.editPlaylistItem = function ($event, clip) {
+        console.log('edit clip', clip);
+        this.editingClip = clip;
+        this.editingPlaylistItem = { title: clip.label, performance: clip.realPerformance.id, part: clip.part.id };
+        // copy startTime endTime
+        if (Math.abs(this.editingClip.startTime - this.editingClip.realPartPerformance.startTime) > 0.01) {
+            this.editingPlaylistItem.startTime = this.editingClip.startTime - this.editingClip.realPartPerformance.startTime;
+        }
+        if (Math.abs(this.editingClip.startTime + this.editingClip.duration - (this.editingClip.realPartPerformance.startTime + this.editingClip.realPartPerformance.duration)) > 0.01) {
+            this.editingPlaylistItem.endTime = this.editingClip.startTime + this.editingClip.duration - this.editingClip.realPartPerformance.startTime;
+        }
+        this.pause();
+        if (this.currentlyPlaying === clip && clip.clip.recording) {
+            // audio or video?
+            if (this.showVideo)
+                this.editingPlaylistItem.currentTime = clip.videoClip.recording.lastTime - clip.realPartPerformance.videoClip.start;
+            else
+                this.editingPlaylistItem.currentTime = clip.audioClip.recording.lastTime - clip.realPartPerformance.audioClip.start;
+        }
+    };
+    WorkExplorerComponent.prototype.fixClipStartTimeAndDuration = function (clip, startTime, endTime) {
+        // set start time
+        if (!startTime || startTime < 0)
+            startTime = 0;
+        if (startTime > clip.realPartPerformance.duration)
+            startTime = clip.realPartPerformance.duration;
+        if (!endTime || endTime > clip.realPartPerformance.duration)
+            endTime = clip.realPartPerformance.duration;
+        if (endTime < startTime)
+            endTime = startTime;
+        clip.hasStartOffset = Math.abs(startTime) > 0.01;
+        clip.hasEndOffset = Math.abs(endTime - clip.realPartPerformance.duration) > 0.01;
+        clip.startTime = clip.realPartPerformance.startTime + startTime;
+        var duration = endTime - startTime;
+        clip.duration = duration;
+        //console.log(`clip startTime = ${this.editingClip}`)
+        if (clip.videoClip && clip.realPartPerformance.videoClip) {
+            clip.videoClip.start = clip.realPartPerformance.videoClip.start + startTime;
+            clip.videoClip.duration = duration;
+        }
+        if (clip.audioClip && clip.realPartPerformance.audioClip) {
+            clip.audioClip.start = clip.realPartPerformance.audioClip.start + startTime;
+            clip.audioClip.duration = duration;
+        }
+        if (clip.clip && clip.realPartPerformance.clip) {
+            clip.clip.start = clip.realPartPerformance.clip.start + startTime;
+            clip.clip.duration = duration;
+        }
+    };
+    WorkExplorerComponent.prototype.saveEditingPlaylistItem = function (info) {
+        console.log('save editing playlist item', info);
+        if (!this.editingClip)
+            return;
+        this.editingClip.label = info.title;
+        this.fixClipStartTimeAndDuration(this.editingClip, info.startTime, info.endTime);
+        this.fixPlaylistOffsets(this.editingClip.performance);
+        this.cancelEditingPlaylistItem();
+    };
+    WorkExplorerComponent.prototype.cancelEditingPlaylistItem = function () {
+        this.editingPlaylistItem = null;
+        this.editingClip = null;
+    };
+    WorkExplorerComponent.prototype.deleteEditingPlaylistItem = function () {
+        if (!this.editingClip)
+            return;
+        for (var ii = 0; ii < this.partPerformances.length; ii++) {
+            var item = this.partPerformances[ii];
+            if (item === this.editingClip) {
+                this.partPerformances.splice(ii, 1);
+                ii--;
+            }
+        }
+        if (this.selectedPerformance === this.editingPlaylist) {
+            for (var ii = 0; ii < this.playlistClips.length; ii++) {
+                var item = this.playlistClips[ii];
+                if (item === this.editingClip) {
+                    this.playlistClips.splice(ii, 1);
+                    ii--;
+                }
+            }
+        }
+        this.fixPlaylistOffsets(this.editingClip.performance);
+        if (this.currentlyPlaying === this.editingClip)
+            this.stop();
+        this.cancelEditingPlaylistItem();
+        this.refreshSelectedPerformance();
+    };
+    WorkExplorerComponent.prototype.fixPlaylistOffsets = function (performance) {
+        // times...
+        var otherClips = this.partPerformances.filter(function (pp) { return pp.performance === performance && pp.isClip; })
+            .sort(function (a, b) { return a.playlistOffset - b.playlistOffset; });
+        var playlistOffset = 0;
+        for (var ci = 0; ci < otherClips.length; ci++) {
+            var c = otherClips[ci];
+            c.playlistOffset = playlistOffset;
+            if (!c.duration || c.duration <= 0) {
+                console.log("warning, clip " + ci + " has duration " + c.duration);
+            }
+            playlistOffset += c.duration;
+        }
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["_11" /* ViewChild */])('appframe'),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1__angular_core__["u" /* ElementRef */])
+    ], WorkExplorerComponent.prototype, "appframe", void 0);
     WorkExplorerComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["n" /* Component */])({
             selector: 'work-explorer',
@@ -1641,11 +2625,13 @@ var WorkExplorerComponent = (function () {
             styles: [__webpack_require__("../../../../../src/app/work-explorer.component.css")]
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_core__["u" /* ElementRef */],
-            __WEBPACK_IMPORTED_MODULE_5__records_service__["a" /* RecordsService */],
-            __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */],
-            __WEBPACK_IMPORTED_MODULE_3__angular_common__["f" /* Location */],
+            __WEBPACK_IMPORTED_MODULE_7__records_service__["a" /* RecordsService */],
+            __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* ActivatedRoute */],
+            __WEBPACK_IMPORTED_MODULE_4__angular_common__["f" /* Location */],
             __WEBPACK_IMPORTED_MODULE_1__angular_core__["Y" /* Renderer2 */],
-            __WEBPACK_IMPORTED_MODULE_1__angular_core__["O" /* NgZone */]])
+            __WEBPACK_IMPORTED_MODULE_1__angular_core__["O" /* NgZone */],
+            __WEBPACK_IMPORTED_MODULE_8__linkapps_service__["a" /* LinkappsService */],
+            __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__["b" /* DomSanitizer */]])
     ], WorkExplorerComponent);
     return WorkExplorerComponent;
 }());
@@ -1732,7 +2718,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 if (__WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].production) {
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* enableProdMode */])();
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_16" /* enableProdMode */])();
 }
 Object(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_2__app_app_module__["a" /* AppModule */]);
 

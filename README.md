@@ -75,14 +75,21 @@ sudo docker run --name meldclient -d --restart=always --network=internal \
 
 ```
 
+View archive on `http://localhost:80/1/archive/explore/Climb` (docker only) 
+or `http://localhost:8000/1/archive/exploreClimb` (docker in vagrant)
+
+Add `?meld` to URL to view meld score. 
+Note Meld view only works for All Your Bass and RCC performances. 
+
 ## Re-Build 
 
 Archive:
 
 ```
 git clone https://github.com/cgreenhalgh/music-archive.git
+cd music-archive
 git checkout meld
-cd music-archive/archive-app
+cd archive-app
 
 sudo docker build -t archive-app .
 sudo docker run --rm archive-app cat /root/work/archive.tgz| cat - > archive.tgz
@@ -96,8 +103,8 @@ cp data/archive/* volumes/html/1/archive/assets/data/
 sed -i -e 'sX"http://music-mrl.nott.ac.uk/X"/X' volumes/html/1/archive/assets/data/musichub-performances.json
 sed -i -e 'sX"http://music-mrl.nott.ac.uk/X"/X' volumes/html/1/archive/assets/data/climb-recordings-20170608.json
 # or dev
-sed -i -e 'sX"http://music-mrl.nott.ac.uk/X"http://localhost:8080/X' volumes/html/1/archive/assets/data/musichub-performances.json
-sed -i -e 'sX"http://music-mrl.nott.ac.uk/X"http://localhost:8080/X' volumes/html/1/archive/assets/data/climb-recordings-20170608.json
+sed -i -e 'sX"http://music-mrl.nott.ac.uk/X"http://localhost:8000/X' volumes/html/1/archive/assets/data/musichub-performances.json
+sed -i -e 'sX"http://music-mrl.nott.ac.uk/X"http://localhost:8000/X' volumes/html/1/archive/assets/data/climb-recordings-20170608.json
 ```
 
 Muzivisual (for archive):
