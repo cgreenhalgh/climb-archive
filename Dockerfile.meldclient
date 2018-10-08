@@ -1,0 +1,17 @@
+FROM node:8.9.1-stretch
+
+RUN mkdir -p /root/work
+WORKDIR /root/work
+
+# bootstrap project
+COPY package.json .
+#COPY package-lock.json .
+
+RUN npm install
+
+COPY . .
+
+# ng serve
+EXPOSE 8080
+
+CMD ["node","./node_modules/webpack-dev-server/bin/webpack-dev-server.js","--host=0.0.0.0"]

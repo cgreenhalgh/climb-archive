@@ -1,0 +1,23 @@
+FROM python:2.7-stretch
+
+RUN mkdir /root/work
+WORKDIR /root/work
+
+COPY requirements.txt /root/work
+RUN pip install -r requirements.txt
+
+ENV MELD_BASE_URI http://127.0.0.1:5000
+ENV MELD_MEI_URI http://127.0.0.1:5000/mei
+ENV MELD_SCORE_URI http://127.0.0.1:5000/score
+
+EXPOSE 5000
+
+COPY . /root/work
+#COPY score.tgz sessions.tgz mei.tgz /root/work/
+#VOLUME /root/work/score
+#VOLUME /root/work/mei
+#(doesn't work) VOLUME /root/work/sessions
+RUN tar zxf score.tgz && tar zxf mei.tgz && tar zxf sessions.tgz
+
+# --threaded?
+CMD ["python","manage.py","runserver","--host=0.0.0.0"]
