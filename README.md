@@ -87,9 +87,7 @@ Archive:
 
 ```
 git clone https://github.com/cgreenhalgh/music-archive.git
-cd music-archive
-git checkout meld
-cd archive-app
+cd music-archive/archive-app
 
 sudo docker build -t archive-app .
 sudo docker run --rm archive-app cat /root/work/archive.tgz| cat - > archive.tgz

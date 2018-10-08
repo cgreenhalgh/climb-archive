@@ -1738,7 +1738,7 @@ var WorkExplorerComponent = (function () {
             perf.selected = true;
         this.selectedPerformance = perf;
         // clips?
-        if (this.selectedPerformance.isPlaylist) {
+        if (this.selectedPerformance && this.selectedPerformance.isPlaylist) {
             this.playlistClips = this.partPerformances.filter(function (pp) { return pp.performance === perf && pp.isClip; }).sort(function (a, b) { return a.playlistOffset - b.playlistOffset; });
         }
         else {
@@ -1756,7 +1756,7 @@ var WorkExplorerComponent = (function () {
                 this.currentlyPlaying.part.active = true;
         }
         if (!this.currentlyPlaying) {
-            if (perf.isPlaylist) {
+            if (perf && perf.isPlaylist) {
                 var pp = this.partPerformances.filter(function (p) { return p.performance === perf && p.isClip; }).sort(function (a, b) { return a.playlistOffset - b.playlistOffset; }).find(function (p) { return true; });
                 if (pp) {
                     this.playInternal(perf, pp.part, pp);
@@ -1777,7 +1777,9 @@ var WorkExplorerComponent = (function () {
         }
         this.checkPopoutMediaVisible();
         this.updateApp();
-        this.linkappsService.meldPerformance(perf.id);
+        if (perf) {
+            this.linkappsService.meldPerformance(perf.id);
+        }
     };
     WorkExplorerComponent.prototype.clickPerformancePlay = function (event, perf) {
         event.preventDefault();
