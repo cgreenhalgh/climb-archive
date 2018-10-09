@@ -166,6 +166,12 @@ Archive app does:
 - click performance: meldWindow.postMessage({type: "performance", payload:perf.id}, "*"); (or "" if null perf)
 - click part: meldWindow.postMessage({type: "fragment", payload:part.id}, "*");
 
+Meld client listens for messages and does:
+- set performance:
+`window.location.href = "http://localhost:8080/archive?perf=" + x.data.payload + "&frag=basecamp";`
+- set part: 
+`window.location.href = "http://localhost:8080/archive?perf=" + performance + "&frag=" + x.data.payload.replace("Climb_", "");`
+
 ### David's instructions
 
 To replicate my setup:

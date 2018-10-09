@@ -369,19 +369,24 @@ var LinkappsService = (function () {
     };
     LinkappsService.prototype.openMeld = function () {
         console.log('open meld');
-        this.meldWindow = window.open('http://localhost:8080/archive', 'window', null);
+        this.meldWindow = window.open('http://localhost:8080/archive', 'meldwindow', null);
     };
-    LinkappsService.prototype.meldPerformance = function (performanceid) {
+    LinkappsService.prototype.meldPartPerformance = function (partid, performanceid) {
         if (!this.meldWindow)
             return;
-        console.log("set meld performance " + performanceid);
-        this.meldWindow.postMessage({ type: "performance", payload: performanceid }, "*");
-    };
-    LinkappsService.prototype.meldPart = function (partid) {
-        if (!this.meldWindow)
+        if (!performanceid)
             return;
-        console.log("set meld part " + partid);
-        this.meldWindow.postMessage({ type: "fragment", payload: partid }, "*");
+        if (partid) {
+            partid = partid.replace('Climb_', '');
+        }
+        else {
+            partid = 'basecamp';
+        }
+        console.log("set meld part " + partid + " performance " + performanceid);
+        // avoid: race
+        //this.meldWindow.postMessage({type: "performance", payload:performanceid}, "*"); 
+        //this.meldWindow.postMessage({type: "fragment", payload:partid}, "*");
+        this.meldWindow = window.open('http://localhost:8080/archive?perf=' + encodeURIComponent(performanceid) + '&frag=' + encodeURIComponent(partid), 'meldwindow', null);
     };
     LinkappsService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
@@ -1777,9 +1782,6 @@ var WorkExplorerComponent = (function () {
         }
         this.checkPopoutMediaVisible();
         this.updateApp();
-        if (perf) {
-            this.linkappsService.meldPerformance(perf.id);
-        }
     };
     WorkExplorerComponent.prototype.clickPerformancePlay = function (event, perf) {
         event.preventDefault();
@@ -1889,9 +1891,10 @@ var WorkExplorerComponent = (function () {
     WorkExplorerComponent.prototype.playInternal = function (perf, part, clip) {
         var _this = this;
         console.log('play ' + perf.id + ' ' + part.id + (clip ? ' clip at ' + clip.startTime : ''));
-        if (this.selectedPerformance !== perf)
-            this.linkappsService.meldPerformance(perf.id);
-        this.linkappsService.meldPart(part.id);
+        if (clip)
+            this.linkappsService.meldPartPerformance(part.id, clip.realPerformance.id);
+        else
+            this.linkappsService.meldPartPerformance(part.id, perf.id);
         for (var pi in this.parts) {
             var p = this.parts[pi];
             p.active = p === part && !part.selected;
@@ -1989,6 +1992,7 @@ var WorkExplorerComponent = (function () {
                     this.currentlyPlaying.setCurrentTime(rec.lastTime + rec.startTime - this.currentlyPlaying.startTime);
                     this.currentlyPlaying.subevents.map(function (ev) { return ev.setAbsTime(rec.lastTime + rec.startTime); });
                     this.updateApp();
+                    this.linkappsService.meldPartPerformance(nextPp.part.id, nextPp.performance.id);
                 }
             }
             else if (this.currentlyPlaying.performance.selected && this.currentlyPlaying.isClip) {
