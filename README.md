@@ -81,6 +81,8 @@ or `http://localhost:8000/1/archive/exploreClimb` (docker in vagrant)
 Add `?meld` to URL to view meld score. 
 Note Meld view only works for All Your Bass and RCC performances. 
 
+[some interesting parts to look at](playlists.md)
+
 ## Re-Build 
 
 Archive:
