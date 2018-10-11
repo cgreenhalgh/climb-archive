@@ -1,0 +1,46 @@
+{
+    "title": "Paper vignettes",
+    "items": [
+        {
+            "title": "A: Failed code - The Stones from Climb! at All Your Bass (2) by Zubin Kanga",
+            "performance": "20180119-allyourbass2",
+            "part": "Climb_1b",
+            "startTime": 26.819972038269043
+        },
+        {
+            "title": "B: Play on without disclav - Path 1 from Dress rehearsal of Climb! by Maria Kallionpää",
+            "performance": "Climb_performance_test",
+            "part": "Climb_p1a",
+            "startTime": 29.10247826576233
+        },
+        {
+            "title": "C: repeat code - The Angry Deer from Dress rehearsal of Climb! by Maria Kallionpää",
+            "performance": "Climb_performance_test",
+            "part": "Climb_1a",
+            "startTime": 7.5551629066467285
+        },
+        {
+            "title": "D: musical interpretation - The Stones from Climb! at All Your Bass by Anne Veinberg",
+            "performance": "20180119-allyourbass1",
+            "part": "Climb_1b"
+        },
+        {
+            "title": "E: choose to fail - The Herd of Cows from Climb! at All Your Bass by Anne Veinberg",
+            "performance": "20180119-allyourbass1",
+            "part": "Climb_2c",
+            "startTime": 46.59426188468933
+        },
+        {
+            "title": "G1: normal pace - Echo from Climb! at All Your Bass (2) by Zubin Kanga",
+            "performance": "20180119-allyourbass2",
+            "part": "Climb_1c",
+            "startTime": 11.28652286529541
+        },
+        {
+            "title": "G2: slow tempo - Echo from Climb! at All Your Bass by Anne Veinberg",
+            "performance": "20180119-allyourbass1",
+            "part": "Climb_1c",
+            "startTime": 10.354938983917236
+        }
+    ]
+}

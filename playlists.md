@@ -2,6 +2,8 @@
 
 ## FAST Industry Day compilation
 
+[FAST Industry Day record](playlists/playlist FAST Industry Day record selection.json)
+
 - 1: Basecamp - Performed by Maria Kallionpää - Premiere Dress Rehearsal                                                        00:54 
 - 2: The Stones - Performed by Maria Kallionpää - Premiere Dress Rehearsal                                                      00:38 
 - 3: Echo - Performed by Anne Veinberg – All Your Bass festival, Royal Concert Hall                                       00:44 
@@ -16,8 +18,9 @@
 - 12: Rolling Stones - Performed by Maria Kallionpää - Premiere Performance 2                                                 01:56 
 - 13: The Summit - Performed by Anne Veinberg - All Your Bass festival, Royal Concert Hall                       02:06 
 
-
 ## paper submission vignettes
+
+[paper vignettes](playlists/playlist Paper vignettes.json)
 
 - Vignette A: Failing a challenge leads to a surprise path, Zubin Kanga, The Stones, code at the end ~31sec. He improvises ‘too’ much around the code.
 - Vignette B: Play on even though Disklavier has not been triggered: Premiere Dress Rehearsal – Path 1a ~32secs 
@@ -29,5 +32,4 @@
 
 ## Walkthrough examples
 
-- [Playlist Walkthrough](playlists/playlist Playlist Walkthrough.json)
-- [FAST Industry Day record](playlists/playlist FAST Industry Day record selection.json)
+[Playlist Walkthrough](playlists/playlist Playlist Walkthrough.json)
