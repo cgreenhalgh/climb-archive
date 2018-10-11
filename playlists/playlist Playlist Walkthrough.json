@@ -1,0 +1,65 @@
+{
+    "title": "Playlist Walkthrough",
+    "items": [
+        {
+            "title": "Piano, score and projection: Basecamp from Premiere performance of Climb! by Maria Kallionpää",
+            "performance": "Climb_performance_1",
+            "part": "Climb_basecamp",
+            "endTime": 44.965725898742676
+        },
+        {
+            "title": "Playing a choice code: Basecamp from Premiere performance of Climb! by Maria Kallionpää",
+            "performance": "Climb_performance_1",
+            "part": "Climb_basecamp",
+            "startTime": 44.965725898742676
+        },
+        {
+            "title": "Path 1: The Angry Deer from Premiere performance of Climb! by Maria Kallionpää",
+            "performance": "Climb_performance_1",
+            "part": "Climb_1a",
+            "endTime": 8.549462795257568
+        },
+        {
+            "title": "Disclav code: The Angry Deer from Premiere performance of Climb! by Maria Kallionpää",
+            "performance": "Climb_performance_1",
+            "part": "Climb_1a",
+            "startTime": 8.549462795257568
+        },
+        {
+            "title": "Challenge approaching: A Flooded Path from Climb! at RCC 2018 (2) by Maria Kallionpää",
+            "performance": "20180221-rcc-2",
+            "part": "Climb_2a",
+            "startTime": 46.1551079750061
+        },
+        {
+            "title": "Challenge approaching: A Flooded Path from Climb! at All Your Bass by Anne Veinberg",
+            "performance": "20180119-allyourbass1",
+            "part": "Climb_2a",
+            "startTime": 47.037522077560425
+        },
+        {
+            "title": "Challenge completed: The Stones from Second performance of Climb! by Maria Kallionpää",
+            "performance": "Climb_Performance_2",
+            "part": "Climb_1b",
+            "startTime": 23.771317958831787
+        },
+        {
+            "title": "Continuing up: Path 2 from Second performance of Climb! by Maria Kallionpää",
+            "performance": "Climb_Performance_2",
+            "part": "Climb_p2a",
+            "endTime": 9.995979070663452
+        },
+        {
+            "title": "Challenge failed: The Stones from Climb! at All Your Bass (2) by Zubin Kanga",
+            "performance": "20180119-allyourbass2",
+            "part": "Climb_1b",
+            "startTime": 23.444504022598267
+        },
+        {
+            "title": "Jumping across: Echo from Climb! at All Your Bass (2) by Zubin Kanga",
+            "performance": "20180119-allyourbass2",
+            "part": "Climb_1c",
+            "endTime": 10.94806694984436
+        }
+    ]
+}

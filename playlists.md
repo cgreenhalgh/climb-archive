@@ -26,3 +26,7 @@
 - Vignette E Choosing to fail by improvising off the score - Anne Veinberg, Herd Of Cows ~ 49sec (misses out the second note of the code phrase)
 - Vignette F: 
 - Vignette G: System issues - Compare the tempo Anne Veinberg’s on Echo to another version
+
+## Walkthrough examples
+
+[Playlist Walkthrough](playlists/playlist Playlist Walkthrough.json)
