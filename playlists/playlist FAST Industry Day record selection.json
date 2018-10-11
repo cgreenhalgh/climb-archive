@@ -1,0 +1,70 @@
+{
+    "title": "FAST Industry Day record selection",
+    "items": [
+        {
+            "title": "Basecamp from Dress rehearsal of Climb! by Maria Kallionpää",
+            "performance": "Climb_performance_test",
+            "part": "Climb_basecamp"
+        },
+        {
+            "title": "The Stones from Dress rehearsal of Climb! by Maria Kallionpää",
+            "performance": "Climb_performance_test",
+            "part": "Climb_1b"
+        },
+        {
+            "title": "Echo from Climb! at All Your Bass by Anne Veinberg",
+            "performance": "20180119-allyourbass1",
+            "part": "Climb_1c"
+        },
+        {
+            "title": "Path 3 from Climb! at All Your Bass by Anne Veinberg",
+            "performance": "20180119-allyourbass1",
+            "part": "Climb_p3a"
+        },
+        {
+            "title": "The Herd of Cows from Climb! at All Your Bass by Anne Veinberg",
+            "performance": "20180119-allyourbass1",
+            "part": "Climb_2c"
+        },
+        {
+            "title": "A Tree Trunk on the Path from Second performance of Climb! by Maria Kallionpää",
+            "performance": "Climb_Performance_2",
+            "part": "Climb_2b"
+        },
+        {
+            "title": "Path 2 from Climb! at All Your Bass (2) by Zubin Kanga",
+            "performance": "20180119-allyourbass2",
+            "part": "Climb_p2b"
+        },
+        {
+            "title": "A Scary Whispering Forest from Climb! at All Your Bass (2) by Zubin Kanga",
+            "performance": "20180119-allyourbass2",
+            "part": "Climb_3b"
+        },
+        {
+            "title": "Path 2 from Premiere performance of Climb! by Maria Kallionpää",
+            "performance": "Climb_performance_1",
+            "part": "Climb_p2c"
+        },
+        {
+            "title": "A Hallucination from Climb! at All Your Bass (2) by Zubin Kanga",
+            "performance": "20180119-allyourbass2",
+            "part": "Climb_4b"
+        },
+        {
+            "title": "Birds Attack from Climb! at All Your Bass (2) by Zubin Kanga",
+            "performance": "20180119-allyourbass2",
+            "part": "Climb_5b"
+        },
+        {
+            "title": "Rolling Stones from Second performance of Climb! by Maria Kallionpää",
+            "performance": "Climb_Performance_2",
+            "part": "Climb_5a"
+        },
+        {
+            "title": "Summit from Climb! at All Your Bass by Anne Veinberg",
+            "performance": "20180119-allyourbass1",
+            "part": "Climb_summit"
+        }
+    ]
+}

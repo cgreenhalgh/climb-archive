@@ -29,4 +29,5 @@
 
 ## Walkthrough examples
 
-[Playlist Walkthrough](playlists/playlist Playlist Walkthrough.json)
+- [Playlist Walkthrough](playlists/playlist Playlist Walkthrough.json)
+- [FAST Industry Day record](playlists/playlist FAST Industry Day record selection.json)
