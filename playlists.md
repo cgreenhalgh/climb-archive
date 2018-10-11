@@ -12,7 +12,7 @@
 - 6: A Tree Trunk on the Path - Performed by Maria Kallionpää - Premiere Performance 2                                02:16 
 - 7: Path 2 (Part B) - Performed by Zubin Kanga - All Your Bass festival, Royal Concert Hall                         01:04 
 - 8: A Scary, Whispering Forest - Performed by Zubin Kanga - All Your Bass festival, Royal Concert Hall    01:38 
-- 9: Path 2 (Part C) - Performed by Maria Kallionpää - Premiere Dress Rehearsal                                            01:07 
+- 9: Path 2 (Part C) - Performed by Maria Kallionpää - Premiere Performance 2                                            01:07 
 - 10: A Hallucination - Performed by Zubin Kanga - All Your Bass festival, Royal Concert Hall                       01:31 
 - 11: Birds Attack - Performed by Zubin Kanga - All Your Bass festival, Royal Concert Hall                            01:20 
 - 12: Rolling Stones - Performed by Maria Kallionpää - Premiere Performance 2                                                 01:56 
