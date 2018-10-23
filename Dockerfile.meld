@@ -20,4 +20,4 @@ COPY . /root/work
 RUN tar zxf score.tgz && tar zxf mei.tgz && tar zxf sessions.tgz
 
 # --threaded?
-CMD ["python","manage.py","runserver","--host=0.0.0.0"]
+CMD ["python","manage.py","runserver","--threaded","--host=0.0.0.0"]
